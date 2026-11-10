@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Osman Dede">
+<meta name="theme-color" content="#10294A">
+<title>OSMAN DEDE 3.1 - İrfanla Sigarayı Bırakma</title>
+<style>
+:root {
+  --bg: #F1F6F7; --sf: #ffffff; --ink: #10243A; --mu: #5A6E80; --ln: #D6E2E6;
+  --nv: #10294A; --tq: #13A9A4; --gn: #8FCB9B; --rd: #C4493B; --yl: #E5A93B;
+  box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1624; --sf: #162538; --ink: #E8F0F5; --mu: #93A7B8; --ln: #27394D;
+    --nv: #0A1A30; --tq: #2CCBC5; --rd: #E5806F; --yl: #F1C40F;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1624; --sf: #162538; --ink: #E8F0F5; --mu: #93A7B8; --ln: #27394D;
+  --nv: #0A1A30; --tq: #2CCBC5; --rd: #E5806F; --yl: #F1C40F; color-scheme: dark;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 480px; margin: 0 auto; padding: 16px 16px 110px; }
+h2 { font-size: 1.15rem; margin: 20px 0 8px; color: var(--ink); }
+h3 { margin: 0 0 4px; font-size: 1rem; color: var(--ink); }
+.hero { background: var(--nv); color: #fff; border-radius: 26px; padding: 22px; position: relative; overflow: hidden; }
+.hero .n { font-size: 3.2rem; font-weight: 800; line-height: 1; margin: 6px 0; }
+.hero small { opacity: .85; }
+.g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+.c { background: var(--sf); border: 1px solid var(--ln); border-radius: 16px; padding: 14px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.g .c { margin: 0; }
+.c b { display: block; font-size: 1.35rem; }
+.c span, .mu { color: var(--mu); font-size: 0.9rem; }
+
+.banner { background: var(--sf); border: 2px solid var(--yl); border-radius: 16px; padding: 14px; margin: 12px 0; box-shadow: 0 4px 15px rgba(229,169,59,0.15); display: flex; gap: 12px; align-items: flex-start; position: relative; }
+.banner.success { border-color: var(--tq); box-shadow: 0 4px 15px rgba(19,169,164,0.15); background: linear-gradient(to bottom, var(--sf), rgba(19,169,164,0.05)); }
+.banner-close { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 1rem; cursor: pointer; color: var(--mu); padding: 4px; }
+
+.dede { display: flex; gap: 14px; align-items: flex-start; background: var(--sf); border-left: 6px solid var(--tq); border-radius: 16px; padding: 14px; margin: 12px 0; box-shadow: 0 3px 12px rgba(0,0,0,0.04); }
+.dede-avatar { flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--ln); display: grid; place-items: center; overflow: hidden; border: 2px solid var(--tq); }
+.dede-avatar svg { width: 100%; height: 100%; display: block; }
+.dede-text { flex: 1; font-size: 0.96rem; line-height: 1.5; }
+
+button { font: inherit; font-weight: 600; border: 0; border-radius: 14px; padding: 13px; cursor: pointer; background: var(--tq); color: #06201F; transition: transform 0.1s ease, opacity 0.2s; }
+button:active { transform: scale(0.98); }
+button.s { background: transparent; color: var(--ink); border: 1px solid var(--ln); }
+button.w { width: 100%; }
+button.r { background: var(--rd); color: #fff; }
+button.p { padding: 9px 13px; margin: 3px; background: var(--sf); color: var(--ink); border: 1px solid var(--ln); font-size: 0.9rem; }
+button.p.on { background: var(--tq); color: #06201F; border-color: var(--tq); }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--tq); outline-offset: 2px; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+input, select, textarea { width: 100%; font: inherit; padding: 12px; border-radius: 12px; border: 1px solid var(--ln); background: var(--sf); color: var(--ink); }
+label { display: block; font-weight: 600; margin: 12px 0 4px; font-size: 0.92rem; }
+.row { display: flex; gap: 8px; }
+.row > * { flex: 1; }
+
+nav { position: fixed; left: 0; right: 0; bottom: 0; display: flex; background: var(--sf); border-top: 1px solid var(--ln); padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 10; box-shadow: 0 -4px 16px rgba(0,0,0,0.05); }
+nav button { flex: 1; background: none; color: var(--mu); border-radius: 0; padding: 10px 2px; font-size: 0.72rem; font-weight: 600; }
+nav button.on { color: var(--tq); }
+nav i { display: block; font-style: normal; font-size: 1.35rem; margin-bottom: 2px; }
+
+.sos { position: fixed; right: 16px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); z-index: 15; border-radius: 30px; padding: 14px 20px; background: var(--rd); color: #fff; box-shadow: 0 6px 20px rgba(196,73,59,0.4); font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; animation: pulseSos 2s infinite; }
+@keyframes pulseSos { 0% { transform: scale(1); } 50% { transform: scale(1.04); box-shadow: 0 8px 25px rgba(196,73,59,0.6); } 100% { transform: scale(1); } }
+
+.bar { height: 8px; background: var(--ln); border-radius: 8px; overflow: hidden; margin-top: 6px; }
+.bar i { display: block; height: 100%; background: var(--tq); border-radius: 8px; }
+.ms { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--ln); align-items: flex-start; }
+.ms.o { opacity: .5; }
+
+.ov { position: fixed; inset: 0; background: var(--bg); z-index: 30; overflow: auto; padding: calc(18px + env(safe-area-inset-top, 0px)) 16px 40px; display: none; }
+.ov.on { display: block; }
+.ov > div { max-width: 480px; margin: auto; }
+
+.ci-circle { width: 150px; height: 150px; border-radius: 50%; background: var(--tq); color: #06201F; display: grid; place-items: center; margin: 16px auto; font-weight: 700; font-size: 1.1rem; text-align: center; padding: 10px; box-shadow: 0 0 30px rgba(19,169,164,0.3); }
+.gamebox { background: var(--sf); border: 1px solid var(--ln); border-radius: 16px; padding: 16px; margin: 12px 0; text-align: center; }
+.gamebig { font-size: 2rem; font-weight: 800; letter-spacing: .15em; margin: 14px 0; color: var(--tq); }
+.mutednote { font-size: 0.82rem; color: var(--mu); margin-top: 6px; }
+.bg { display: inline-block; margin: 3px; padding: 6px 12px; border-radius: 20px; background: var(--sf); border: 1px solid var(--ln); font-size: 0.88rem; font-weight: 500; }
+.bg.x { opacity: .4; }
+.toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--nv); color: #fff; padding: 10px 20px; border-radius: 30px; font-weight: 600; z-index: 100; box-shadow: 0 5px 20px rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.toast.show { opacity: 1; }
+
+.chat-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; max-height: 60vh; overflow-y: auto; padding-right: 4px; }
+.chat-bubble { display: flex; gap: 10px; align-items: flex-start; }
+.chat-bubble.user { flex-direction: row-reverse; }
+.chat-bubble.user .chat-content { background: var(--tq); color: #06201F; border-radius: 16px 16px 2px 16px; }
+.chat-content { background: var(--sf); border: 1px solid var(--ln); padding: 14px; border-radius: 16px 16px 16px 2px; max-width: 82%; font-size: 0.95rem; line-height: 1.45; }
+.chat-options { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.chat-option-btn { background: var(--sf); border: 1px solid var(--tq); color: var(--ink); text-align: left; padding: 12px 16px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+.chat-option-btn:hover { background: var(--tq); color: #06201F; }
+
+.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 50; display: none; align-items: flex-end; justify-content: center; padding: 0; padding-bottom: env(safe-area-inset-bottom, 0px); -webkit-overflow-scrolling: touch; }
+.modal-bg.on { display: flex; }
+.modal-box { background: var(--sf); border-radius: 20px 20px 0 0; padding: 16px; max-width: 480px; width: 100%; max-height: min(90dvh, 90vh); overflow-y: auto; -webkit-overflow-scrolling: touch; box-shadow: 0 -8px 40px rgba(0,0,0,0.35); display: flex; flex-direction: column; position: relative; }
+.modal-box:has(.modal-body) { padding: 0; overflow: hidden; }
+.modal-box .modal-head { flex: none; display: flex; align-items: flex-start; gap: 8px; padding: 14px 16px 8px; border-bottom: 1px solid var(--ln); position: relative; }
+.modal-box .modal-head .modal-close { flex: none; width: 44px; height: 44px; border-radius: 22px; border: 1px solid var(--ln); background: var(--sf); color: var(--ink); font-size: 1.25rem; font-weight: 700; display: grid; place-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.modal-box .modal-body { flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 12px 16px; min-height: 0; }
+.modal-box .modal-foot { flex: none; padding: 10px 16px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--ln); background: var(--sf); }
+body.modal-open { overflow: hidden !important; position: fixed; width: 100%; height: 100%; }
+
+.chart { width: 100%; height: 100px; margin-top: 8px; }
+.bars { display: flex; align-items: flex-end; gap: 2px; height: 80px; margin-top: 8px; }
+.bars > div { flex: 1; background: var(--tq); border-radius: 2px 2px 0 0; min-height: 2px; position: relative; }
+.bars > div span { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 0.55rem; color: var(--mu); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="toast" class="toast">Kaydedildi</div>
+<main id="app"></main>
+<button class="sos" id="sos" style="display:none">🆘 Kriz Geldi!</button>
+<nav id="nav" style="display:none"></nav>
+<div class="ov" id="ov"><div id="ovc"></div></div>
+<div class="modal-bg" id="modalBg"><div class="modal-box" id="modalBox"></div></div>
+
+<script>
+(function(){
+"use strict";
+
+var K = "osmandede_v1", K3 = "osmandede_v3_state", $ = function(i){return document.getElementById(i)}, S, tab = "home", DAY = 864e5;
+
+/* ---------- Osman Dede SVG Avatars ---------- */
+function getDedeAvatar(mood) {
+  var face = "";
+  switch(mood) {
+    case 'angry':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><path d="M15 22 L25 25 M41 22 L31 25" stroke="#06201F" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="30" r="3" fill="#06201F"/><circle cx="36" cy="30" r="3" fill="#06201F"/><path d="M18 42 Q28 35 38 42" stroke="#06201F" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+      break;
+    case 'surprised':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><circle cx="20" cy="28" r="4" fill="#06201F"/><circle cx="36" cy="28" r="4" fill="#06201F"/><circle cx="28" cy="42" r="5" fill="#06201F"/><path d="M14 20 Q28 12 42 20 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+      break;
+    case 'thought':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><line x1="16" y1="24" x2="24" y2="26" stroke="#06201F" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="30" r="3" fill="#06201F"/><circle cx="36" cy="30" r="3" fill="#06201F"/><path d="M20 40 Q28 44 36 40" stroke="#06201F" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+      break;
+    case 'laugh':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><circle cx="18" cy="28" r="3" fill="#06201F"/><circle cx="38" cy="28" r="3" fill="#06201F"/><path d="M16 36 Q28 52 40 36 Z" fill="#06201F"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+      break;
+    case 'sad':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><circle cx="20" cy="30" r="3" fill="#06201F"/><circle cx="36" cy="30" r="3" fill="#06201F"/><path d="M18 44 Q28 36 38 44" stroke="#06201F" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+      break;
+    case 'proud':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><circle cx="20" cy="28" r="3.5" fill="#06201F"/><circle cx="36" cy="28" r="3.5" fill="#06201F"/><path d="M17 38 Q28 46 39 38" stroke="#06201F" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M10 16 Q28 6 46 16" stroke="#E5A93B" stroke-width="3" fill="none"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/>';
+      break;
+    case 'comfort':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><circle cx="20" cy="29" r="3.5" fill="#06201F"/><circle cx="36" cy="29" r="3.5" fill="#06201F"/><path d="M18 39 Q28 44 38 39" stroke="#06201F" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+      break;
+    case 'suspicious':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><line x1="16" y1="26" x2="24" y2="28" stroke="#06201F" stroke-width="3"/><circle cx="20" cy="30" r="3" fill="#06201F"/><circle cx="36" cy="30" r="3" fill="#06201F"/><path d="M20 40 H36" stroke="#06201F" stroke-width="3" stroke-linecap="round"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+      break;
+    case 'warning':
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><path d="M15 20 L25 24 M41 20 L31 24" stroke="#06201F" stroke-width="3"/><circle cx="20" cy="29" r="3" fill="#06201F"/><circle cx="36" cy="29" r="3" fill="#06201F"/><path d="M18 41 Q28 35 38 41" stroke="#06201F" stroke-width="3" fill="none"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+      break;
+    default:
+      face = '<circle cx="28" cy="28" r="26" fill="#13A9A4"/><circle cx="20" cy="29" r="3.5" fill="#06201F"/><circle cx="36" cy="29" r="3.5" fill="#06201F"/><path d="M17 38 Q28 48 39 38" stroke="#06201F" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M12 18 Q28 8 44 18 Z" fill="#F1F6F7"/><path d="M10 24 Q28 14 46 24 Z" fill="#fff"/>';
+  }
+  return '<svg viewBox="0 0 56 56">' + face + '</svg>';
+}
+
+function dedeBox(msg, mood) {
+  return '<div class="dede"><div class="dede-avatar">' + getDedeAvatar(mood || 'smile') + '</div><div class="dede-text"><b>Osman Dede:</b><br>' + esc(msg) + '</div></div>';
+}
+
+function showToast(msg) {
+  var t = $("toast"); if(!t) return;
+  t.textContent = msg; t.classList.add("show");
+  setTimeout(function(){ t.classList.remove("show"); }, 2500);
+}
+
+/* ---------- State init & migration ---------- */
+function initDefaultState() {
+  S = {
+    start: Date.now(), perDay: 20, perPack: 20, price: 100,
+    years: "", why: "", trig: "", triggers: [], w0: 0, hgt: 0, wg: 0, prof: 1,
+    theme: "auto", crises: [], slips: [], weights: [], goals: [],
+    wOn: 0, stateLogs: [], expLogs: [],
+    badges: [], dismissedBanners: {}, bannerResponses: [],
+    patternCache: null, progressCache: null,
+    dedeSeen: {}, lastDedeMsg: null,
+    quitConfirmed: false,
+    setupDone: false
+  };
+}
+
+try {
+  var raw = localStorage.getItem(K3) || localStorage.getItem(K);
+  if (raw) S = JSON.parse(raw);
+} catch(e) {}
+
+if (!S) initDefaultState();
+
+// Migration / ensure defaults
+["crises","slips","weights","goals","stateLogs","expLogs","badges","bannerResponses"].forEach(function(k){ S[k] = S[k] || []; });
+S.dismissedBanners = S.dismissedBanners || {};
+S.dedeSeen = S.dedeSeen || {};
+S.prof = S.prof || 1;
+S.theme = S.theme || "auto";
+if (S.setupDone === undefined) S.setupDone = true;
+// Eski kullanıcılar zaten bırakmış kabul edilir
+if (S.quitConfirmed === undefined) {
+  S.quitConfirmed = !!(S.setupDone && S.start && S.start <= Date.now());
+}
+// Migrate free-text trig -> triggers array
+if (!S.triggers || !S.triggers.length) {
+  S.triggers = [];
+  if (S.trig && String(S.trig).trim()) {
+    String(S.trig).split(/[,;\n]+/).forEach(function(t){
+      t = t.trim();
+      if (t && S.triggers.indexOf(t) < 0) S.triggers.push(t);
+    });
+  }
+  // defaults if still empty
+  if (!S.triggers.length) {
+    S.triggers = ["Kahve / Çay", "Yemek sonrası", "Stres", "Sıkıntı", "Sosyal ortam", "Sabah uyanınca"];
+  }
+}
+
+function save() {
+  try {
+    localStorage.setItem(K3, JSON.stringify(S));
+    localStorage.setItem(K, JSON.stringify(S));
+  } catch(e) { showToast("Kayıt yapılamadı!"); }
+}
+
+function esc(s) { return String(s || "").replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function f(n, d) { return Number(n).toLocaleString("tr-TR", {minimumFractionDigits: d||0, maximumFractionDigits: d||0}); }
+
+/* ---------- OSMAN DEDE: modes, triggers, Allen Carr style ---------- */
+var DEFAULT_TRIGGERS = [
+  "Sabah uyanınca","Kahve içerken","Çay içerken","Yemek sonrasında","Alkol alırken",
+  "Stresli olduğumda","Sinirlendiğimde","Üzüldüğümde","Sıkıldığımda","Yalnız kaldığımda",
+  "Arkadaş ortamında","Sigara içenleri gördüğümde","İş molasında","Araç kullanırken","Telefonla konuşurken",
+  "Bilgisayar başında çalışırken","Yemek beklerken","Sosyal ortamlarda","Bir işi bitirdiğimde veya kendimi ödüllendirmek istediğimde","Gece yatmadan önce"
+];
+var TRIG_TIPS = {
+  "Sabah uyanınca": [
+    "Ula evladım, sabah gözünü açar açmaz o merete sarılma. Yataktan kalk, yüzünü yıka, bir bardak su iç. Rutinini değiştir gari.",
+    "Sabah uyanınca sigara mı? Ulan o zıkkım seni daha yataktan kaldırıyor. Önce su, sonra pencere, sonra hayat."
+  ],
+  "Kahve içerken": [
+    "Ula evladım, senin bela kahveyle sigarayı birbirine karıştırman. Kahveni bugün başka yerde iç gari. Şu nikotin zıkkımını kahvenin yanından kov!",
+    "Kahve tek başına da içilir lan! O mereti fincanın yanından uzak tut. Farklı masada otur, su koy yanına."
+  ],
+  "Çay içerken": [
+    "Çayını farklı ortamda iç, elini meşgul et. Sigarasız çay da lezzetlidir gari, denemedin ki!",
+    "Bre, çayla sigarayı evlendirmişsin. Boşayın hele. Çay bardağını tut, o mereti tutma."
+  ],
+  "Yemek sonrasında": [
+    "Bak hele, senin tetikleyicin yemek sonrası. Sofradan kalkar kalkmaz dişlerini fırçala. O boktan alışkanlığın zincirini kıracağız!",
+    "Karnın doydu. Nikotin efendi sofraya oturmasın. Kalk, dişini fırçala ya da kısa yürü."
+  ],
+  "Alkol alırken": [
+    "Alkol o meretin istek ateşini körüklüyor ulan. Mümkünse bir süre uzak dur; uzaklaşamıyorsan en azından eline sigara alma.",
+    "İçki + sigara = çift tuzak. Birini tutuyorsan ötekini bırak gari. Nikotin borcunu tahsil etmesin."
+  ],
+  "Stresli olduğumda": [
+    "Bre gardaş, stres geldi diye sigaraya sarılma. Önce bir dur, nefesini yavaşlat, biraz yürü. Sigara derdini çözmüyor, nikotin borcunu tahsil ediyor!",
+    "Stres var diye ciğerine duman basmak ne halt? 4 al, 4 tut, 6 ver. O dalga geçer."
+  ],
+  "Sinirlendiğimde": [
+    "Sinirlendin diye o merete mi koşacan? Ulan bir dur hele. Su iç, uzaklaş, sonra karar ver.",
+    "Öfke geçici, o zıkkımın hasarı kalıcı. Tepki vermeden önce 10 saniye bekle gari."
+  ],
+  "Üzüldüğümde": [
+    "Üzüntünü dumanla bastırma evladım. Konuş, yürü, ağla istersen — ama o mereti eline alma.",
+    "Canın yanıyor diye ciğerini yakma ulan. Duygunu yaşa, sigara çözüm değil."
+  ],
+  "Sıkıldığımda": [
+    "Sıkıldın diye mi yakıyorsun? Hafıza oyununu aç, ortam değiştir. Sıkıntı 5 dakikada dağılır, o meret dağılmaz.",
+    "Ulan sıkıntı geçici. O boktan alışkanlık kalıcı olmasın. Bir iş bul eline."
+  ],
+  "Yalnız kaldığımda": [
+    "Yalnızken o meret yoldaş mı oluyor? Değil. Biri ara, müzik aç, ortam değiştir. Yalnızlık sigara istemez, sen istemiş gibi hissediyorsun.",
+    "Tek başına kalınca zıkkıma sarılma. Kendine sigarasız bir uğraş koy gari."
+  ],
+  "Arkadaş ortamında": [
+    "Arkadaş 'bir tane de sen' derse hazır cümlen olsun: 'İçmiyorum, teşekkürler.' İrade bulaşıcıdır ulan.",
+    "Sosyal ortamda kaçış planın olsun. Dumanın yanından uzaklaş, su tut eline."
+  ],
+  "Sigara içenleri gördüğümde": [
+    "Başkasının dumanı seni yönlendirmesin. Bakıp geç, dikkatini başka yere çevir. O onların borcu, seninki değil.",
+    "Ulan gördün diye içmek zorunda değilsin. O koku bir tuzak, yutturma kendini."
+  ],
+  "İş molasında": [
+    "Sigara molası değil, nefes molası olsun. Yürü, su iç, başka rutin kur. İş yerindeki o zinciri kıracağız gari.",
+    "Mola = o meret demek değil. Ayağa kalk, koridorda dolan, ciğerine temiz hava al."
+  ],
+  "Araç kullanırken": [
+    "Direksiyonda duman hem risk hem tuzak. Su koy yanına, mola rutinini değiştir. Güvenli kal ulan.",
+    "Arabada o mereti unut. Yol uzun, borcun kısa olmasın."
+  ],
+  "Telefonla konuşurken": [
+    "Konuşurken elin boş kalmasın diye sigara tutma. Kalem tut, su tut. O alışkanlığı kopar.",
+    "Telefon + sigara ikilisine son. Konuşurken ayağa kalk, dolaş."
+  ],
+  "Bilgisayar başında çalışırken": [
+    "Ekran başında o merete uzanma. Kısa mola ver, ayağa kalk. Çalışma alanını sigaradan ayır gari.",
+    "Klavye + duman eşleşmesini boz. Su koy masaya, her saat kalk yürü."
+  ],
+  "Yemek beklerken": [
+    "Beklerken elin o merete gitmesin. Su iç, biraz hareket et. Bekleyiş de geçer, duman kalır.",
+    "Sipariş gelene kadar yakma ulan. O boşluk 5 dakika, alışkanlık yıllarca."
+  ],
+  "Sosyal ortamlarda": [
+    "Sosyal ortamda sigara içmeyenlerle vakit geçir. Reddetme cümlen hazır olsun. İrade bulaşır gari.",
+    "Kalabalıkta o zıkkıma sarılma. Ortamdan biraz uzaklaş, nefes al."
+  ],
+  "Bir işi bitirdiğimde veya kendimi ödüllendirmek istediğimde": [
+    "İşi bitirdin diye ödülün duman mı? Ulan gerçek bir ödül seç: yemek, yürüyüş, küçük bir keyif. Sigara ödül değil, borç!",
+    "Kendini ödüllendiriyorsan nikotinle değil. O meret seni kandırıyor, 'aferin' diye zehir satıyor."
+  ],
+  "Gece yatmadan önce": [
+    "Yatmadan önce dişini fırçala, rutini değiştir. O son sigara yalanı — 'son' hiç gelmez ulan.",
+    "Gece o mereti bırak. Temiz ağızla uyu, sabah ciğerin teşekkür etsin."
+  ]
+};
+var TRIG_INFO_MSGS = [
+  "Tetikleyici geldi diye sigara içmek zorunda değilsin. İstek var, ihtiyaç yok. Fark bu ulan.",
+  "Kahve, yemek, stres… nikotin bunlara tasma takmış. Tasmayı sen tutarsan o yönetemez.",
+  "Bir tetikleyiciyle sigarasız geçirdiğin her an yeni alışkanlık demek. Zincir öyle kırılır gari.",
+  "Tetikleyicilerin etkisi zamanla azalabilir. Herkesin temposu farklı, ama denemek şart.",
+  "Canın çekti diye muhtaç değilsin. İstek dalgası 3-5 dakika; o meretin hasarı yıllarca.",
+  "Nikotin önce yoksunluk yaratır, sonra 'rahatladım' dedirtir. Tetikleyici o oyunun sahnesi.",
+  "Sosyal ortam, mola, yalnızlık… hepsi öğrenilmiş eşleşme. Öğrenilen unutulur da ulan.",
+  "Tetikleyici alarmdır, emir değil. Alarm çaldı diye kapıyı açmak zorunda değilsin.",
+  "Bir iş bitince ödül diye duman yakmak nikotinin hilesi. Ödül başka şey olmalı.",
+  "Sabah uyanınca istek gelmesi bağımlılık döngüsü. Vücut temizlenmeye çalışıyor aslında.",
+  "Yemek sonrası o alışkanlık tuzaktır. Karnın doydu, borcu erteleme.",
+  "Stres geldi diye sigara 'çözüm' gibi görünür. Aslında stresi biraz bastırıp büyütür.",
+  "Arkadaş ortamında teklif gelince hayır demek iradedir, ayıp değil.",
+  "Sigara içenleri görmek isteği tetikleyebilir. Görmek içmek demek değil gari.",
+  "İş molasını dumanla eşleştirmişsin. Mola = nefes, yürü, su. Yeniden tanımla.",
+  "Telefonda el boş kalınca o merete gidiyor. Elini meşgul et, alışkanlığı boz.",
+  "Gece 'son bir tane' yalanı. Son hiç gelmez, sen karar verince biter.",
+  "Alkol isteği artırabilir. Bil, hazırlan, eline alma.",
+  "Sıkıntı geçici; o zıkkıma sarılmak kalıcı hasar. Ortam değiştir.",
+  "Yalnızlıkta sigara yoldaş olmaz. Yoldaş senin iraden olsun ulan."
+];
+
+function getTriggers() {
+  if (!S.triggers) S.triggers = [];
+  if (S.trig && !S.triggers.length) {
+    String(S.trig).split(/[,;\n]+/).forEach(function(t){
+      t = t.trim();
+      if (!t) return;
+      var mapped = mapLegacyTrigger(t);
+      if (mapped && S.triggers.indexOf(mapped) < 0) S.triggers.push(mapped);
+    });
+  }
+  // Filter to known defaults only (keep crisis history keys separately)
+  S.triggers = S.triggers.filter(function(t){ return DEFAULT_TRIGGERS.indexOf(t) >= 0; });
+  return S.triggers;
+}
+function mapLegacyTrigger(t) {
+  var low = String(t).toLocaleLowerCase("tr-TR");
+  var pairs = [
+    ["sabah", "Sabah uyanınca"],["kahve", "Kahve içerken"],["çay", "Çay içerken"],
+    ["yemek", "Yemek sonrasında"],["alkol", "Alkol alırken"],["stres", "Stresli olduğumda"],
+    ["sinir", "Sinirlendiğimde"],["üz", "Üzüldüğümde"],["sıkıl", "Sıkıldığımda"],["sıkınt", "Sıkıldığımda"],
+    ["yalnız", "Yalnız kaldığımda"],["arkadaş", "Arkadaş ortamında"],["sosyal", "Sosyal ortamlarda"],
+    ["iş", "İş molasında"],["mola", "İş molasında"],["araç", "Araç kullanırken"],["araba", "Araç kullanırken"],
+    ["telefon", "Telefonla konuşurken"],["bilgisayar", "Bilgisayar başında çalışırken"],
+    ["gece", "Gece yatmadan önce"],["yat", "Gece yatmadan önce"],["ödül", "Bir işi bitirdiğimde veya kendimi ödüllendirmek istediğimde"],
+    ["gör", "Sigara içenleri gördüğümde"]
+  ];
+  for (var i = 0; i < pairs.length; i++) {
+    if (low.indexOf(pairs[i][0]) >= 0) return pairs[i][1];
+  }
+  for (var j = 0; j < DEFAULT_TRIGGERS.length; j++) {
+    if (DEFAULT_TRIGGERS[j] === t) return t;
+  }
+  return null;
+}
+function addTrigger(name) {
+  name = String(name || "").trim();
+  if (!name || DEFAULT_TRIGGERS.indexOf(name) < 0) return;
+  if (!S.triggers) S.triggers = [];
+  if (S.triggers.indexOf(name) < 0) { S.triggers.push(name); save(); }
+}
+
+
+/* ---------- Farkındalıklı Sigara Günlüğü ---------- */
+var EXP_OPTS = [
+  {id:"koku", label:"Üzerime sinen kötü sigara kokusu"},
+  {id:"tat", label:"Ağzımda kalan kötü tat"},
+  {id:"nefes_koku", label:"Nefesimin kötü kokması"},
+  {id:"bogaz", label:"Boğazımda yanma veya tahriş"},
+  {id:"oksuruk", label:"Öksürük"},
+  {id:"ciger", label:"Ciğerlerimde ağrı veya rahatsızlık hissi"},
+  {id:"nefes_dar", label:"Nefesimin daralması"},
+  {id:"bas_agri", label:"Baş ağrısı"},
+  {id:"bas_don", label:"Baş dönmesi"},
+  {id:"mide", label:"Mide bulantısı"},
+  {id:"kalp", label:"Kalp çarpıntısı"},
+  {id:"halsiz", label:"Halsizlik ve yorgunluk"},
+  {id:"huzursuz", label:"Kendimi huzursuz hissetmek"},
+  {id:"pisman", label:"Pişmanlık duymak"},
+  {id:"istemeden", label:"Aslında içmek istemediğim hâlde içmiş olmak"},
+  {id:"farkinda_degil", label:"Farkında olmadan sigarayı yakmış olmak"},
+  {id:"art_arda", label:"Bir sigara biter bitmez diğerini yakmak"},
+  {id:"saymadan", label:"Ne kadar içtiğimi fark etmeden art arda sigara içmek"},
+  {id:"rahatlatti_mi", label:"Sigaranın beklediğim rahatlamayı vermemesi"},
+  {id:"daha_kotu", label:"Sigara içtikten sonra kendimi daha kötü hissetmek"}
+];
+var FEEL_BEFORE = ["Sakin","Stresli","Sıkılmış","Yorgun","Sinirli","Mutlu","Nötr","Canım çekiyordu"];
+var FEEL_AFTER = ["Rahatlamış","Pişman","Daha kötü","Aynı","Huzursuz","Yorgun","Suçlu","Nötr"];
+
+function isDiaryEnabled() {
+  // Yalnızca hazırlık / henüz onaylanmamış bırakma (ileri tarih yolu)
+  // veya daha önce prep'teyken kayıt tutulmuşsa
+  return !!(S && S.setupDone && !S.quitConfirmed);
+}
+function personalExperienceHint(ctxKeys) {
+  var logs = S.expLogs || [];
+  if (logs.length < 1) return "";
+  // En sık işaretlenen id'ler
+  var counts = {};
+  logs.forEach(function(L){
+    (L.exps || []).forEach(function(id){ counts[id] = (counts[id]||0)+1; });
+  });
+  var ranked = Object.keys(counts).sort(function(a,b){ return counts[b]-counts[a]; });
+  if (!ranked.length) return "";
+  var top = ranked.slice(0, 3);
+  var labels = top.map(function(id){
+    for (var i=0;i<EXP_OPTS.length;i++) if (EXP_OPTS[i].id===id) return EXP_OPTS[i].label.toLowerCase();
+    return id;
+  });
+  var variants = [
+    "Ula evladım, hele bi düşün. Daha önce şu mereti içtikten sonra " + labels.join(", ") + " diye işaretlemiştin. Şimdi ne oldu ulan, bütün bunları unuttun mu? Biraz bekle gari.",
+    "Bre gardaş, geçen sefer bu sigaranın seni " + (labels[0] || "kötü hissettirdiğini") + " kendin yazmışsın. Canın istiyor diye o gerçeği çöpe mi atalım? Nikotin denen düzenbaz yine kandırmaya çalışıyor.",
+    "Bak hele, kendi kayıtların var: " + labels.slice(0,2).join(" ve ") + ". Bu meret sana ne bıraktığını unutma ulan."
+  ];
+  // Tekrar engeli
+  var key = "exp_hint_" + top.join("_");
+  if (!shouldShowDede(key, 4)) return "";
+  return variants[Math.floor(Math.random() * variants.length)];
+}
+function openExpDiary(slipTs, n) {
+  var mb = $("modalBg"), box = $("modalBox");
+  if (!mb || !box) return;
+  var selected = {};
+  var none = false;
+  var fbSel = {};
+  var faSel = {};
+  var score = null;
+  var closed = false;
+
+  function lockScroll() {
+    try {
+      document.body.classList.add("modal-open");
+      document.body.style.top = "-" + (window.scrollY || 0) + "px";
+    } catch(e){}
+  }
+  function unlockScroll() {
+    try {
+      var y = document.body.style.top;
+      document.body.classList.remove("modal-open");
+      document.body.style.top = "";
+      if (y) {
+        var sc = parseInt(y, 10);
+        if (!isNaN(sc)) window.scrollTo(0, -sc);
+      }
+    } catch(e){}
+  }
+  function closeDiary(force) {
+    if (closed) return;
+    closed = true;
+    try { mb.onclick = null; } catch(e){}
+    try { document.removeEventListener("keydown", onEsc); } catch(e){}
+    mb.classList.remove("on");
+    box.innerHTML = "";
+    unlockScroll();
+  }
+  function onEsc(e) {
+    if (e.key === "Escape" || e.keyCode === 27) closeDiary(true);
+  }
+
+  function paint() {
+    var optsHtml = EXP_OPTS.map(function(o){
+      return '<button type="button" class="p' + (selected[o.id] ? ' on' : '') + '" data-exp="' + o.id + '" style="width:100%;text-align:left;margin:3px 0">' + esc(o.label) + '</button>';
+    }).join("");
+
+    box.innerHTML =
+      '<div class="modal-head">' +
+        '<div style="flex:1;min-width:0">' + dedeBox("Ula evladım, bu sigaradan sana ne kaldı? İçtikten sonra neler hissettin?", "thought") + '</div>' +
+        '<button type="button" class="modal-close" id="expCloseX" aria-label="Kapat">✕</button>' +
+      '</div>' +
+      '<div class="modal-body" id="expScroll">' +
+        '<p class="mu" style="margin:0 0 8px">İstediğin kadar seç. Zorunlu değil — Atla veya ✕ ile kapatabilirsin.</p>' +
+        optsHtml +
+        '<button type="button" class="p' + (none ? ' on' : '') + '" id="expNone" style="width:100%;margin:8px 0">Bunların hiçbirini yaşamadım</button>' +
+        '<label style="margin-top:10px">İçmeden önce (isteğe bağlı)</label>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:4px">' +
+          FEEL_BEFORE.map(function(f){ return '<button type="button" class="p' + (fbSel[f]?' on':'') + '" data-fb="' + esc(f) + '">' + esc(f) + '</button>'; }).join("") +
+        '</div>' +
+        '<label>İçtikten sonra (isteğe bağlı)</label>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:4px">' +
+          FEEL_AFTER.map(function(f){ return '<button type="button" class="p' + (faSel[f]?' on':'') + '" data-fa="' + esc(f) + '">' + esc(f) + '</button>'; }).join("") +
+        '</div>' +
+        '<label>Bu sigaraya puan (1-10, isteğe bağlı)</label>' +
+        '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">' +
+          [1,2,3,4,5,6,7,8,9,10].map(function(nn){ return '<button type="button" class="p' + (score===nn?' on':'') + '" data-sc="' + nn + '">' + nn + '</button>'; }).join("") +
+        '</div>' +
+      '</div>' +
+      '<div class="modal-foot">' +
+        '<div class="row">' +
+          '<button type="button" class="s" id="expSkip" style="flex:1">Atla</button>' +
+          '<button type="button" class="w" id="expSave" style="flex:1">Kaydet</button>' +
+        '</div>' +
+      '</div>';
+
+    mb.classList.add("on");
+    lockScroll();
+
+    // Preserve scroll position across repaints
+    var scrollEl = $("expScroll");
+    var prevScroll = paint._scroll || 0;
+    if (scrollEl) scrollEl.scrollTop = prevScroll;
+
+    function rememberScroll() {
+      var s = $("expScroll");
+      if (s) paint._scroll = s.scrollTop;
+    }
+
+    Array.prototype.forEach.call(box.querySelectorAll("[data-exp]"), function(b){
+      b.onclick = function(){
+        rememberScroll();
+        none = false;
+        var id = b.getAttribute("data-exp");
+        if (selected[id]) delete selected[id]; else selected[id] = true;
+        paint();
+      };
+    });
+    var noneBtn = $("expNone");
+    if (noneBtn) noneBtn.onclick = function(){
+      rememberScroll();
+      none = !none;
+      if (none) selected = {};
+      paint();
+    };
+    Array.prototype.forEach.call(box.querySelectorAll("[data-fb]"), function(b){
+      b.onclick = function(){
+        rememberScroll();
+        var v = b.getAttribute("data-fb");
+        if (fbSel[v]) delete fbSel[v]; else fbSel[v] = true;
+        paint();
+      };
+    });
+    Array.prototype.forEach.call(box.querySelectorAll("[data-fa]"), function(b){
+      b.onclick = function(){
+        rememberScroll();
+        var v = b.getAttribute("data-fa");
+        if (faSel[v]) delete faSel[v]; else faSel[v] = true;
+        paint();
+      };
+    });
+    Array.prototype.forEach.call(box.querySelectorAll("[data-sc]"), function(b){
+      b.onclick = function(){
+        rememberScroll();
+        score = +b.getAttribute("data-sc");
+        paint();
+      };
+    });
+
+    var closeX = $("expCloseX");
+    if (closeX) closeX.onclick = function(e){ e.stopPropagation(); closeDiary(true); };
+    $("expSkip").onclick = function(){ closeDiary(true); };
+    $("expSave").onclick = function(){
+      var entry = {
+        ts: slipTs || Date.now(),
+        n: n || 1,
+        exps: none ? [] : Object.keys(selected),
+        none: !!none,
+        before: Object.keys(fbSel),
+        after: Object.keys(faSel),
+        score: score
+      };
+      S.expLogs = S.expLogs || [];
+      var exists = S.expLogs.some(function(e){ return e.ts === entry.ts; });
+      if (!exists) { S.expLogs.push(entry); save(); }
+      closeDiary(true);
+      showToast("Deneyim kaydı saklandı.");
+    };
+  }
+
+  // Backdrop: only close if clicking the dimmed area (not the box)
+  mb.onclick = function(e){
+    if (e.target === mb) closeDiary(true);
+  };
+  document.addEventListener("keydown", onEsc);
+  closed = false;
+  paint._scroll = 0;
+  paint();
+}
+
+function tipForTrigger(t) {
+  var arr = TRIG_TIPS[t];
+  if (arr && arr.length) return arr[Math.floor(Math.random() * arr.length)];
+  return "Bu tetikleyiciyi tanıdın. Geldiğinde nefes al, su iç, 5 dakika bekle. Geçer gari.";
+}
+function tipLabelForTrigger(t) {
+  var arr = TRIG_TIPS[t];
+  if (arr && arr.length) return arr[0];
+  return tipForTrigger(t);
+}
+
+function dedeMode(ctx) {
+  // ctx: {urge, stress, smoked, sad}
+  if (ctx && (ctx.sad || (ctx.stress && ctx.stress >= 7) || (ctx.urge && ctx.urge >= 8))) return "comfort";
+  if (ctx && ((ctx.urge && ctx.urge >= 6) || ctx.smoked || ctx.strict)) return "strict";
+  return "normal";
+}
+
+var ALLEN_LINES = [
+  "Ula evladım, sigara seni rahatlatmıyor. Önce seni huzursuz ediyor, sonra o huzursuzluğu biraz azaltıp kendini nimet gibi satıyor. Ulan ne kurnaz dolandırıcı bu!",
+  "Yemekten sonra sigara ödül mü? Değil be. Nikotin borcunu erteleyip gene kapına dayanıyor. Karnın doydu, o meret sofraya oturmasın.",
+  "Kahvenin tadı sigarayla mı güzel oluyor? Yoo. Sen bu iki belayı birbirine evlendirmişsin, hepsi bu gari.",
+  "Canın sigara istiyor diye ona muhtaç değilsin ulan. İstek başka, ihtiyaç başka. Şu ikisini ayıralım hele.",
+  "Bir şey kaybetmiyorsun bre. Seni kendine bağlayan boktan alışkanlıktan kurtuluyorsun. Özgürlük bu işte.",
+  "Sigara stres mi çözüyor? Çözmüyor. Nikotin gerginliğini bastırıp sonra gene kapına dayanıyor. Ne halt ediyorsun o merete güvenerek?",
+  "İrade savaşı vermene gerek yok. Bu mereti romantikleştirmeyi bırak, iş biter gari.",
+  "Ulan sigara dediğin nedir ki? Bir parça kâğıda sarılmış tütün. Bir de hayatının ortasına kurulmuş, kira da vermiyor namussuz!",
+  "Sigara gerçek ihtiyaç değil. Yoksunluk yaratıp 'rahatladım' dedirten bir düzenek, hepsi bu.",
+  "Özgürlük mahrumiyet değil. O bağımlılıktan kurtulmak özgürlüktür gari."
+];
+function pickAllen() {
+  return ALLEN_LINES[Math.floor(Math.random() * ALLEN_LINES.length)];
+}
+function dedeCrisisOpen(before, ctxKeys) {
+  var mode = dedeMode({urge: before});
+  var lines;
+  if (mode === "comfort") {
+    lines = [
+      "Bugün canın sıkkın belli evladım. Sigara derdini çözmez, üstüne dert ekler. Önce bi nefes al, acele etme.",
+      "Zor bir an, biliyorum. Yalnız değilsin. Şu 5 dakikayı beraber geçirelim gari."
+    ];
+  } else if (mode === "strict") {
+    lines = [
+      "Ula evladım, gene mi geldi bu boktan meret aklına? Bir tane içince ne olacak ulan? Beş dakika sonra gene isteyeceksin.",
+      "Bak hele, nikotin denen lanet gene kapıyı çaldı. Kapıyı açma. Beraber savalım şu namussuzu."
+    ];
+  } else {
+    lines = [
+      "Ula, yine mi bu meretin peşine düştün? Gel hele, şu krizi beraber atlatalım.",
+      "Nefes al evladım. Bu dalga 3-5 dakikada geçer, söz. İstek geldi diye her geleni eve mi alacaksın ulan?"
+    ];
+  }
+  var msg = lines[Math.floor(Math.random() * lines.length)];
+  // Kişisel deneyim hatırlatması
+  var pers = personalExperienceHint(ctxKeys);
+  if (pers) msg += " " + pers;
+  else if (ctxKeys && ctxKeys.length) {
+    var tip = tipForTrigger(ctxKeys[0]);
+    if (Math.random() > 0.4) msg += " " + tip;
+  } else if (Math.random() > 0.5) {
+    msg += " " + pickAllen();
+  }
+  return {msg: msg, mood: mode === "comfort" ? "comfort" : (mode === "strict" ? "angry" : "warning")};
+}
+function dedeSlip(n) {
+  var lines = [
+    "Ulan evladım, " + n + " tane içtin diye bütün emeğini çöpe mi atacan? Hata yaptın, tamam. Paketi bırak, kaldığımız yerden devam edelim gari.",
+    "Bir kayma oldu. Dünya yıkılmadı. Şimdi 'madem içtim bitsin' deme ulan, o tuzak. Bugünü de kazanacağız.",
+    "Tamam, oldu. Bu meret bir kez daha kandırdı. Ama sen pes etme. Nikotin denen lanet sevinsin istemiyorum."
+  ];
+  return {msg: lines[Math.floor(Math.random() * lines.length)], mood: "warning"};
+}
+function dedeHome() {
+  var s = stats(), g = Math.floor(s.cur / DAY);
+  S._dedeRecent = S._dedeRecent || [];
+  function notRecent(msg) {
+    return S._dedeRecent.indexOf(msg) < 0;
+  }
+  function pushRecent(msg) {
+    S._dedeRecent.push(msg);
+    if (S._dedeRecent.length > 10) S._dedeRecent.shift();
+  }
+  var pool = [];
+  var trigs = getTriggers();
+  // Tetikleyiciye özel tavsiyeler
+  trigs.forEach(function(t){
+    var arr = TRIG_TIPS[t] || [];
+    arr.forEach(function(m){ if (notRecent(m)) pool.push({msg: m, mood: "thought"}); });
+  });
+  // Bilgilendirici
+  (TRIG_INFO_MSGS || []).forEach(function(m){ if (notRecent(m)) pool.push({msg: m, mood: "thought"}); });
+  // Genel / allen / istatistik
+  var general = [
+    {msg: "Ulan evladım, bugün de uyandın ve sigara yok. " + g + ". gün, hayırlı olsun!", mood: "smile"},
+    {msg: "Ben 50 sene bu zıkkımı içtim, ciğerlerim davul oldu. Sen bari yapma koçum.", mood: "thought"},
+    {msg: f(s.money, 0) + " TL cebinde kaldı. Dede olarak gurur duyuyorum senden.", mood: "proud"},
+    {msg: "Gün gün sayıyoruz evladım, ne inatçı meretmiş be!", mood: "smile"}
+  ];
+  ALLEN_LINES.forEach(function(m){ if (notRecent(m)) general.push({msg: m, mood: "thought"}); });
+  if (!pool.length) pool = general;
+  else pool = pool.concat(general.filter(function(x){ return notRecent(x.msg); }));
+  if (!pool.length) {
+    pool = [{msg: pickAllen(), mood: "thought"}];
+  }
+  var pick = pool[Math.floor(Math.random() * pool.length)];
+  pushRecent(pick.msg);
+  return pick;
+}
+function dedeGame(ok, level) {
+  if (ok) {
+    var good = ["Helal olsun evladım!", "Bak hele, aklın yerinde!", "Bre aferin, seviye " + (level || "") + "!"];
+    return good[Math.floor(Math.random() * good.length)];
+  }
+  var bad = ["Olmadı koçum. Tekrar dene.", "Bre, üç rakamı mı tutamadın? Pazardan beş çeşit alıp eksiksiz dönüyom ben!", "Yanlış. Ama pes etme."];
+  return bad[Math.floor(Math.random() * bad.length)];
+}
+
+function isPrepMode() {
+  // Hazırlık: tarih henüz gelmedi VEYA tarih geldi ama kullanıcı onaylamadı
+  if (!S || !S.start) return false;
+  if (S.quitConfirmed) return false;
+  return true; // confirmed değilse her zaman prep/pending
+}
+function isCountdown() {
+  return !!(S && S.start && S.start > Date.now() && !S.quitConfirmed);
+}
+function needsQuitConfirm() {
+  return !!(S && S.start && S.start <= Date.now() && !S.quitConfirmed && S.setupDone);
+}
+function isActiveQuit() {
+  return !!(S && S.quitConfirmed);
+}
+function formatCountdown(ms) {
+  if (ms < 0) ms = 0;
+  var d = Math.floor(ms / DAY);
+  var h = Math.floor((ms % DAY) / 3600000);
+  var m = Math.floor((ms % 3600000) / 60000);
+  var s = Math.floor((ms % 60000) / 1000);
+  return { d: d, h: h, m: m, s: s, text: d + " gün " + h + " sa " + m + " dk " + s + " sn" };
+}
+function dedePrep() {
+  var left = formatCountdown(S.start - Date.now());
+  var lines = [
+    "Ula evladım, kararını vermişsin. " + left.d + " gün kaldı. O güne kadar kendimizi hazırlayacağız. Günler su gibi geçer gari!",
+    "Hazırlık zamanı. Tetikleyicilerini tanı, o meretin oyunlarını çöz. Tarih gelince hazır olacağız.",
+    "Kahveyle sigarayı birbirine evlendirmiş olabilirsin. Bunları boşayacağız gari. Kahveni gene içeceksin, nikotin sofraya oturamayacak.",
+    pickAllen(),
+    "Bırakma gününe " + left.d + " gün " + left.h + " saat var. Bugünden o günü düşünerek küçük adımlar at."
+  ];
+  var trigs = getTriggers();
+  if (trigs.length && Math.random() > 0.5) {
+    var t = trigs[Math.floor(Math.random() * trigs.length)];
+    return { msg: tipForTrigger(t) + " (Tetikleyicin: " + t + ")", mood: "thought" };
+  }
+  return { msg: lines[Math.floor(Math.random() * lines.length)], mood: "smile" };
+}
+function dedeQuitDay() {
+  return { msg: "İşte o gün geldi evladım! Bugün yeni hayatının ilk günü. Hadi bakalım, nikotin efendiye kapıyı gösteriyoruz!", mood: "proud" };
+}
+
+function shouldShowDede(key, hours) {
+  S.dedeSeen = S.dedeSeen || {};
+  var last = S.dedeSeen[key] || 0;
+  if (Date.now() - last < (hours || 6) * 3600000) return false;
+  S.dedeSeen[key] = Date.now();
+  save();
+  return true;
+}
+
+
+/* ================================================================
+   CHAT POOLS — 110 mesaj (30 hikâye + 15 fıkra + 20 Allen Carr
+   + 20 günlük + 15 kriz + 10 öğüt)
+   ================================================================ */
+/* CHAT_POOLS removed */
+/* CHAT_NODES removed */
+function hourBucket(c) { return new Date(c.ts).getHours(); }
+function dayBucket(c) { return new Date(c.ts).getDay(); }
+function triggerOf(c) { if (!c.ctx) return "belirsiz"; var k = Object.keys(c.ctx); return k.length ? k[0] : "belirsiz"; }
+
+function analyzePatterns() {
+  var crises = S.crises || [];
+  var patterns = [];
+  if (crises.length < 4) return patterns;
+
+  var hours = {}, daySet = {};
+  crises.forEach(function(c){
+    var h = hourBucket(c); hours[h] = (hours[h]||0) + 1;
+    daySet[new Date(c.ts).toDateString()] = true;
+  });
+  if (Object.keys(daySet).length >= 3) {
+    var bestH = -1, bestC = 0;
+    for (var h in hours) if (hours[h] > bestC) { bestC = hours[h]; bestH = +h; }
+    if (bestH >= 0 && bestC >= 2) {
+      patterns.push({
+        type: "hour", key: "hour_" + bestH, hour: bestH, count: bestC,
+        timeRange: ((bestH+23)%24) + ":00 - " + ((bestH+2)%24) + ":00",
+        msg: "Ula evladım, son günlerde genelde bu saatlerde krizlerin tutuyor (" + ((bestH+23)%24) + ":00 - " + ((bestH+2)%24) + ":00). Bugün nasılsın bakalım?"
+      });
+    }
+  }
+
+  var days = {};
+  crises.forEach(function(c){ var d = dayBucket(c); days[d] = (days[d]||0)+1; });
+  var bestD = -1, bestDC = 0;
+  for (var d in days) if (days[d] > bestDC) { bestDC = days[d]; bestD = +d; }
+  if (bestD >= 0 && bestDC >= 3) {
+    var dnames = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+    patterns.push({
+      type: "day", key: "day_" + bestD, day: bestD, count: bestDC,
+      msg: "Ula, " + dnames[bestD] + " günleri senin kriz günün olmuş. Bugün " + dnames[bestD] + ". Nasılsın?"
+    });
+  }
+
+  var trig = {};
+  crises.forEach(function(c){ var t = triggerOf(c); trig[t] = (trig[t]||0)+1; });
+  var bestT = null, bestTC = 0;
+  for (var t in trig) if (trig[t] > bestTC) { bestTC = trig[t]; bestT = t; }
+  if (bestT && bestTC >= 3 && bestT !== "belirsiz") {
+    patterns.push({
+      type: "trigger", key: "trig_" + bestT, trigger: bestT, count: bestTC,
+      msg: "Bak hele, sen en çok '" + bestT + "' durumunda kriz yaşıyorsun. Bu tetikleyiciyi tanı, ona göre hazırlan."
+    });
+  }
+
+  return patterns;
+}
+
+function detectProgress() {
+  var crises = (S.crises || []).slice();
+  if (crises.length < 6) return null;
+  var T = Date.now();
+  var last7 = crises.filter(function(c){ return T - c.ts < 7*DAY && T - c.ts >= 0; });
+  var prev7 = crises.filter(function(c){ return T - c.ts >= 7*DAY && T - c.ts < 14*DAY; });
+  if (last7.length < 2 || prev7.length < 2) return null;
+  var dropPct = prev7.length > 0 ? Math.round((prev7.length - last7.length) / prev7.length * 100) : 0;
+  var avgSevLast = last7.reduce(function(a,c){ return a + (c.before||0); }, 0) / last7.length;
+  var avgSevPrev = prev7.reduce(function(a,c){ return a + (c.before||0); }, 0) / prev7.length;
+  var succLast = last7.filter(function(c){ return !c.smoked; }).length / last7.length;
+  var succPrev = prev7.filter(function(c){ return !c.smoked; }).length / prev7.length;
+  return {
+    lastCount: last7.length, prevCount: prev7.length, dropPct: dropPct,
+    sevDelta: avgSevPrev - avgSevLast,
+    succDelta: (succLast - succPrev) * 100,
+    enough: true
+  };
+}
+
+function badgeDefinitions() {
+  var L = longest() / 36e5;
+  var succ = (S.crises||[]).filter(function(c){ return !c.smoked; }).length;
+  var progress = detectProgress();
+  var defs = [
+    {id:'b_1h', name:'İlk Adım', desc:'Sigarasız ilk saat atlatıldı.', cond: L >= 1},
+    {id:'b_24h', name:'Bir Günlük Direnç', desc:'Tam 24 saat dumansız yaşandı.', cond: L >= 24},
+    {id:'b_3d', name:'Üç Günlük Zirve', desc:'En zorlu nikotin eşiği aşıldı.', cond: L >= 72},
+    {id:'b_1w', name:'Bir Haftalık Özgürlük', desc:'Tam 7 gün dumansız.', cond: L >= 168},
+    {id:'b_c5', name:'Kriz Avcısı', desc:'5 kriz başarıyla atlatıldı.', cond: succ >= 5},
+    {id:'b_c15', name:'Çelik İrade', desc:'15 kriz zaferle sonuçlandı.', cond: succ >= 15}
+  ];
+  if (progress) {
+    if (progress.dropPct >= 30 && progress.prevCount >= 3) {
+      defs.push({id:'b_drop30', name:'Krizler Seyrekleşiyor', desc:'Kriz sıklığı %' + progress.dropPct + ' azaldı.', cond:true, reason:'Son 7 gün (' + progress.lastCount + ') vs önceki 7 gün (' + progress.prevCount + ')'});
+    }
+    if (progress.sevDelta >= 1.5) {
+      defs.push({id:'b_sevdrop', name:'Kontrol Sende', desc:'Ortalama kriz şiddeti belirgin düştü.', cond:true, reason:'Şiddet ' + f(progress.sevDelta,1) + ' puan düştü.'});
+    }
+    if (progress.succDelta >= 20) {
+      defs.push({id:'b_succup', name:'Daha Güçlü', desc:'Kriz atlatma oranı anlamlı yükseldi.', cond:true, reason:'Atlatma +%' + f(progress.succDelta,0)});
+    }
+  }
+  return defs;
+}
+
+function checkBadgesAndMilestones() {
+  var earned = [];
+  badgeDefinitions().forEach(function(def){
+    if (!def.cond) return;
+    if (S.badges.some(function(b){ return b.id === def.id; })) return;
+    var obj = {id: def.id, name: def.name, desc: def.desc, ts: Date.now(), reason: def.reason || ""};
+    S.badges.push(obj); earned.push(obj);
+  });
+  if (earned.length) save();
+  return earned;
+}
+
+
+
+function slipsN() { return (S.slips || []).reduce(function(a,s){ return a + (s.n || 1); }, 0); }
+function sStart() { return (S.slips && S.slips.length) ? Math.max(S.start, S.slips[S.slips.length-1].ts) : S.start; }
+function stats() {
+  var T = Date.now();
+  // Onaylanmamışsa sayaç 0
+  if (!S.quitConfirmed) {
+    return { ns: 0, money: 0, packs: 0, cur: 0, perCig: S.price / S.perPack };
+  }
+  var el = Math.max(0, T - S.start);
+  var ns = Math.max(0, el / DAY * S.perDay - slipsN());
+  return { ns: ns, money: ns * S.price / S.perPack, packs: ns / S.perPack, cur: Math.max(0, T - sStart()), perCig: S.price / S.perPack };
+}
+function longest() {
+  var p = [S.start].concat(S.slips.map(function(s){ return s.ts; })).concat([Date.now()]), m = 0;
+  for (var i = 1; i < p.length; i++) m = Math.max(m, p[i] - Math.max(p[i-1], S.start));
+  return m;
+}
+
+var MS = [
+  [0.33, "20 dakika", "Kalp atış hızı ve tansiyon normale düşmeye başlar."],
+  [12, "12 saat", "Kandaki karbonmonoksit normale yaklaşır."],
+  [24, "24 saat", "Kalp krizi riski azalmaya başlar."],
+  [48, "48 saat", "Tat ve koku duyuları iyileşmeye başlar."],
+  [72, "72 saat", "Bronşlar gevşer, nefes almak kolaylaşır."],
+  [336, "2-12 hafta", "Dolaşım ve akciğer fonksiyonları güçlenir."],
+  [720, "1-9 ay", "Öksürük ve nefes darlığı azalır."],
+  [8760, "1 yıl", "Koroner kalp hastalığı riski yarı yarıya azalır."]
+];
+
+/* ---------- Navigation ---------- */
+function show() {
+  try { document.body.classList.remove("modal-open"); document.body.style.top = ""; } catch(e){}
+  var on = S && S.setupDone;
+  $("sos").style.display = on ? "block" : "none";
+  $("nav").style.display = on ? "flex" : "none";
+  if (!on) { setup(false); return; }
+
+  $("nav").innerHTML = [
+    ["home","🏠","Ana Sayfa"],["hl","🫁","Sağlık & Durum"],
+    ["st","📊","Analiz"],["se","⚙️","Ayarlar"]
+  ].map(function(t){ return '<button data-t="' + t[0] + '" class="' + (tab === t[0] ? "on" : "") + '"><i>' + t[1] + '</i>' + t[2] + '</button>'; }).join("");
+
+  Array.prototype.forEach.call($("nav").children, function(b){
+    b.onclick = function(ev){
+      var t = b.getAttribute("data-t") || (b.dataset && b.dataset.t);
+      if (!t) return;
+      if (t === "home") homeDedeMsg = null; // sekme geçişinde yeni tavsiye
+      tab = t;
+      show();
+    };
+  });
+
+  var screens = {home: home, hl: healthScreen, st: insightsScreen, se: settingsScreen};
+  var fn = screens[tab] || home;
+  try {
+    fn();
+  } catch (err) {
+    console.error("Ekran hatası (" + tab + "):", err);
+    showToast("Ekran yüklenirken hata oluştu. Ana sayfaya dönülüyor.");
+    tab = "home";
+    try { home(); } catch(e2) { console.error(e2); }
+  }
+  window.scrollTo(0, 0);
+}
+
+/* ---------- HOME ---------- */
+var homeDedeMsg = null;
+
+function bindSlipUI() {
+  var slCount = null;
+  var saving = false;
+  Array.prototype.forEach.call(document.querySelectorAll("[data-sl]"), function(b){
+    b.onclick = function(){
+      var v = b.getAttribute("data-sl") || b.dataset.sl;
+      Array.prototype.forEach.call(document.querySelectorAll("[data-sl]"), function(x){ x.classList.remove("on"); });
+      if (v === "4") {
+        var wrap = $("slCustomWrap");
+        if (wrap) { wrap.style.display = "block"; }
+        var inp = $("slCustom");
+        if (inp) inp.focus();
+        slCount = null;
+      } else {
+        var wrap2 = $("slCustomWrap");
+        if (wrap2) wrap2.style.display = "none";
+        b.classList.add("on");
+        slCount = parseInt(v, 10);
+      }
+    };
+  });
+  var slBtn = $("sl");
+  if (!slBtn) return;
+  slBtn.onclick = function(){
+    if (saving) return;
+    var n = slCount;
+    if (n === null) {
+      var cv = parseInt((($("slCustom") && $("slCustom").value) || "0"), 10);
+      if (cv > 0) n = cv;
+    }
+    if (!n || n < 1) { showToast("Lütfen kaç tane içtiğini seç."); return; }
+    saving = true;
+    slBtn.disabled = true;
+    var prev = slipsN();
+    var slipTs = Date.now();
+    S.slips.push({ts: slipTs, n: n}); save();
+    var after = slipsN();
+    var ds = dedeSlip(n);
+    showToast(ds.msg);
+    homeDedeMsg = {text: ds.msg, mood: ds.mood};
+    if (isDiaryEnabled()) {
+      setTimeout(function(){ openExpDiary(slipTs, n); }, 400);
+    }
+    setTimeout(function(){ saving = false; }, 800);
+    tab = "home"; show();
+  };
+}
+
+
+function refreshDedeMessage() {
+  try {
+    if (tab !== "home") return;
+    var el = document.getElementById("homeDedeMsg");
+    if (!el) return;
+    var dh;
+    if (needsQuitConfirm()) {
+      dh = { msg: "Ula evladım, o gün geldi! Bugün gerçekten bıraktın mı, bakalım.", mood: "proud" };
+    } else if (isCountdown() || (isPrepMode() && !isActiveQuit())) {
+      dh = dedePrep();
+    } else {
+      dh = dedeHome();
+    }
+    homeDedeMsg = { text: dh.msg || dh.text || "", mood: dh.mood || "smile" };
+    el.innerHTML = "<b>Osman Dede:</b><br>" + esc(homeDedeMsg.text);
+    // avatar mood optional
+    var av = document.getElementById("homeDedeAvatar");
+    if (av) av.innerHTML = getDedeAvatar(homeDedeMsg.mood);
+  } catch (e) {
+    console.error("refreshDedeMessage", e);
+  }
+}
+
+function home() {
+  try {
+  // body scroll kilidi kalmışsa aç
+  try { document.body.classList.remove("modal-open"); document.body.style.top = ""; } catch(e){}
+  var s = stats(), g = Math.floor(s.cur / DAY), now = new Date(), todayKey = now.toISOString().slice(0,10);
+  if (needsQuitConfirm()) {
+    // Onay modalı tick/show içinde açılır
+    if (!homeDedeMsg || homeDedeMsg._prep) {
+      homeDedeMsg = {text: "Ula evladım, o gün geldi! Bugün gerçekten bıraktın mı, bakalım.", mood: "proud", _prep: true};
+    }
+  } else if (isCountdown() || (isPrepMode() && !isActiveQuit())) {
+    if (!homeDedeMsg || !homeDedeMsg._prep) {
+      var dp = dedePrep();
+      homeDedeMsg = {text: dp.msg, mood: dp.mood, _prep: true};
+    }
+  } else {
+    if (!homeDedeMsg || homeDedeMsg._prep) {
+      var dh = dedeHome();
+      homeDedeMsg = {text: (dh && dh.msg) || "Ula evladım, yola devam!", mood: (dh && dh.mood) || "smile"};
+    }
+  }
+  if (!homeDedeMsg || !homeDedeMsg.text) {
+    homeDedeMsg = {text: "Ula evladım, yola devam koçum!", mood: "smile"};
+  }
+
+  var newlyEarned = checkBadgesAndMilestones();
+  var bannerHtml = "";
+
+  if (newlyEarned.length > 0) {
+    var badge = newlyEarned[0];
+    if (!S.dismissedBanners["badge_" + badge.id]) {
+      bannerHtml = '<div class="banner success" id="topBanner"><button class="banner-close" id="closeBannerBtn">✕</button>' +
+        '<div style="font-size:2rem">🏆</div><div><h3>Osman Dede Kutluyor!</h3>' +
+        '<span>Ula evladım, bak hele! <b>' + badge.name + '</b> rozetini kaptın. ' + badge.desc + (badge.reason ? '<br><small class="mu">' + esc(badge.reason) + '</small>' : '') + '<br>Helal olsun sana!</span></div></div>';
+    }
+  }
+
+  if (!bannerHtml) {
+    var patterns = analyzePatterns();
+    var nowH = now.getHours();
+    var shownPattern = null;
+    for (var i = 0; i < patterns.length; i++) {
+      var p = patterns[i];
+      var bKey = "pattern_" + todayKey + "_" + p.key;
+      if (S.dismissedBanners[bKey]) continue;
+      var match = false;
+      if (p.type === "hour" && Math.abs(nowH - p.hour) <= 1) match = true;
+      else if (p.type === "day" && now.getDay() === p.day) match = true;
+      else if (p.type === "trigger") match = true;
+      if (match) { shownPattern = { p: p, key: bKey }; break; }
+    }
+    if (shownPattern) {
+      var pp = shownPattern.p;
+      bannerHtml = '<div class="banner" id="topBanner"><button class="banner-close" id="closeBannerBtn">✕</button>' +
+        '<div style="font-size:2rem">🧐</div><div style="flex:1"><h3>Osman Dede Uyarıyor</h3>' +
+        '<span>' + esc(pp.msg) + '</span>' +
+        '<div style="display:flex; gap:8px; margin-top:8px;">' +
+        '<button class="p" id="bnNoCrisis" style="flex:1">Şu an kriz yok</button>' +
+        '<button class="r" id="bnYesCrisis" style="flex:1; padding:8px;">Sigara isteğim var</button>' +
+        '</div></div></div>';
+    }
+  }
+
+  var nextGoal = (S.goals || []).concat([1000,5000,10000,25000,50000]).sort(function(a,b){return a-b;})
+    .filter(function(x){ return s.money < x; })[0];
+  var goalsHtml = nextGoal ? '<div class="c"><h3>Sıradaki Hedef: ' + f(nextGoal) + ' TL</h3>' +
+    '<div class="bar"><i style="width:' + Math.min(100, s.money/nextGoal*100) + '%"></i></div>' +
+    '<span>' + f(nextGoal - s.money, 0) + ' TL kaldı</span></div>' : '';
+
+  $("app").innerHTML = bannerHtml +
+    (isCountdown()
+      ? '<div class="hero" style="background:linear-gradient(135deg,var(--nv),#1a3a5c)"><small>🚬 Özgürlüğüne Kalan Süre</small><div class="n" id="t1"></div><small id="t2"></small></div>'
+      : needsQuitConfirm()
+        ? '<div class="hero" style="background:linear-gradient(135deg,var(--nv),#3a2a1a)"><small>Onay Bekleniyor</small><div class="n" id="t1">?</div><small id="t2">Bıraktın mı?</small></div>'
+        : '<div class="hero"><small>Sigarasız Geçen Süre</small><div class="n" id="t1"></div><small id="t2"></small></div>') +
+    '<div class="g">' +
+      (!isActiveQuit()
+        ? ('<div class="c"><b>—</b><span>Tasarruf (başlayınca)</span></div>' +
+           '<div class="c"><b>—</b><span>İçilmeyen (başlayınca)</span></div>' +
+           '<div class="c"><b>' + getTriggers().length + '</b><span>Tanımlı Tetikleyici</span></div>' +
+           '<div class="c"><b>' + S.crises.filter(function(c){return !c.smoked;}).length + '</b><span>Hazırlık Krizi</span></div>')
+        : ('<div class="c"><b id="m1">0</b><span>Cebinde Kalan TL</span></div>' +
+           '<div class="c"><b>' + f(Math.floor(s.ns)) + '</b><span>İçilmeyen Sigara</span></div>' +
+           '<div class="c"><b>' + f(s.packs, 1) + '</b><span>İçilmeyen Paket</span></div>' +
+           '<div class="c"><b>' + S.crises.filter(function(c){return !c.smoked;}).length + '</b><span>Atlatılan Kriz</span></div>')) +
+    '</div>' +
+    '<div class="c"><h3>Tasarruf Özeti</h3><span>Günlük ' + f(S.perDay * s.perCig, 0) + ' TL · Haftalık ' + f(S.perDay * s.perCig * 7, 0) + ' TL<br>Aylık ' + f(S.perDay * s.perCig * 30, 0) + ' TL · Yıllık ' + f(S.perDay * s.perCig * 365, 0) + ' TL</span></div>' +
+    goalsHtml +
+    '<div class="dede"><div class="dede-avatar" id="homeDedeAvatar">' + getDedeAvatar((homeDedeMsg && homeDedeMsg.mood) || "smile") + '</div><div class="dede-text" id="homeDedeMsg"><b>Osman Dede:</b><br>' + esc((homeDedeMsg && homeDedeMsg.text) || "") + '</div></div>' +
+    '<h2>Sigara İçtim</h2><div class="c">' +
+      '<p class="mu">Kaç tane içtiğini seç, tek tıkla kaydet.</p>' +
+      '<div class="row" style="margin-bottom:8px">' +
+        [1,2,3,4].map(function(n){ return '<button class="p" data-sl="' + n + '" style="flex:1">' + (n===4?'4+':n) + '</button>'; }).join("") +
+      '</div>' +
+      '<div id="slCustomWrap" style="display:none; margin-bottom:8px"><input id="slCustom" type="number" min="1" placeholder="Kaç tane?"></div>' +
+      '<button class="w r" id="sl">Sigara İçtim, Kaydet</button></div>' +
+    '<p class="mu">Geçmişin ve rozetlerin silinmez; sadece sayaç güncellenir. Dede kızmaz, yeter ki vazgeçme.</p>' +
+    '<h2>Kazanılan Rozetler</h2><div>' + (S.badges.length ? S.badges.map(function(b){ return '<span class="bg" title="' + esc(b.desc) + '">🏅 ' + esc(b.name) + '</span>'; }).join("") : '<span class="mu">Henüz rozet yok, yola devam koçum.</span>') + '</div>';
+
+  tick();
+  bindSlipUI();
+  if (needsQuitConfirm()) {
+    setTimeout(function(){ showQuitConfirmModal(); }, 300);
+  }
+
+  var closeBtn = $("closeBannerBtn");
+  if (closeBtn) closeBtn.onclick = function() {
+    if (newlyEarned.length > 0) S.dismissedBanners["badge_" + newlyEarned[0].id] = true;
+    else { var pats = analyzePatterns(); for (var i = 0; i < pats.length; i++) S.dismissedBanners["pattern_" + todayKey + "_" + pats[i].key] = true; }
+    save(); home();
+  };
+
+  var bnNo = $("bnNoCrisis");
+  if (bnNo) bnNo.onclick = function() {
+    S.bannerResponses.push({ts: Date.now(), answer: "no_crisis"});
+    var pats = analyzePatterns();
+    for (var i = 0; i < pats.length; i++) S.dismissedBanners["pattern_" + todayKey + "_" + pats[i].key] = true;
+    save(); showToast("Harika! Dede seninle gurur duyuyor."); home();
+  };
+
+  var bnYes = $("bnYesCrisis");
+  if (bnYes) bnYes.onclick = function() {
+    S.bannerResponses.push({ts: Date.now(), answer: "yes_crisis"});
+    var pats = analyzePatterns();
+    for (var i = 0; i < pats.length; i++) S.dismissedBanners["pattern_" + todayKey + "_" + pats[i].key] = true;
+    save(); openCrisis();
+  };
+  } catch (err) {
+    console.error("home() error:", err);
+    try {
+      $("app").innerHTML = '<div class="c"><h3>Ana sayfa yüklenirken hata</h3><p class="mu">' + esc(String(err && err.message || err)) + '</p><button class="w" onclick="location.reload()">Yenile</button></div>';
+    } catch(e2){}
+  }
+}
+
+function tick() {
+  var el = $("t1"); if (!el || tab !== "home") return;
+  if (needsQuitConfirm()) {
+    // Tarih geldi, onay bekleniyor — bir kez modal aç
+    showQuitConfirmModal();
+    el.textContent = "0 gün";
+    if ($("t2")) $("t2").textContent = "Onay bekleniyor";
+    if ($("m1")) $("m1").textContent = "0";
+    return;
+  }
+  if (isCountdown()) {
+    var left = S.start - Date.now();
+    if (left <= 0) {
+      homeDedeMsg = null;
+      show(); // needsQuitConfirm devreye girer
+      return;
+    }
+    var cd = formatCountdown(left);
+    el.textContent = cd.d + " gün";
+    $("t2").textContent = cd.h + " sa " + cd.m + " dk " + cd.s + " sn";
+    if ($("m1")) $("m1").textContent = "0";
+  } else if (isActiveQuit()) {
+    var s = stats(), t = s.cur, d = Math.floor(t / DAY);
+    el.textContent = d + " gün";
+    $("t2").textContent = Math.floor(t / 36e5 % 24) + " sa " + Math.floor(t / 6e4 % 60) + " dk " + Math.floor(t / 1e3 % 60) + " sn";
+    if ($("m1")) $("m1").textContent = f(s.money, 2);
+  } else {
+    // prep without future date edge case
+    el.textContent = "—";
+    if ($("t2")) $("t2").textContent = "Hazırlık";
+  }
+}
+
+var _quitModalShown = false;
+function showQuitConfirmModal() {
+  if (_quitModalShown) return;
+  var mb = $("modalBg"), box = $("modalBox");
+  if (!mb || !box) return;
+  // Zaten açıksa tekrar basma
+  if (mb.classList.contains("on") && box.innerHTML.indexOf("gerçekten bıraktın") >= 0) return;
+  _quitModalShown = true;
+  box.innerHTML =
+    '<div style="text-align:center;margin-bottom:10px">' + getDedeAvatar("proud") + '</div>' +
+    '<h3 style="margin-top:0">Ula evladım, o gün geldi!</h3>' +
+    '<p style="font-size:1.05rem">Bugün sigarayı <b>gerçekten</b> bıraktın mı?</p>' +
+    '<p class="mu">Planlanan tarih: ' + new Date(S.start).toLocaleString("tr-TR") + '</p>' +
+    '<div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">' +
+      '<button class="w" id="quitYesBtn">✓ Evet, sigarayı bıraktım</button>' +
+      '<button class="w s" id="quitNoBtn">✗ Hayır, henüz bırakamadım</button>' +
+    '</div>';
+  mb.classList.add("on");
+
+  $("quitYesBtn").onclick = function() {
+    S.quitConfirmed = true;
+    // Bırakma anı: planlanan tarih geçmişse o tarih, değilse şimdi
+    if (!S.start || S.start > Date.now()) S.start = Date.now();
+    S._wasPrep = false;
+    homeDedeMsg = {
+      text: "İşte budur evladım! Sözünü tuttun gari. Bugün yeni hayatının ilk günü. Hadi bakalım, nikotin efendiye kapıyı gösteriyoruz!",
+      mood: "proud"
+    };
+    save();
+    mb.classList.remove("on");
+    box.innerHTML = "";
+    _quitModalShown = false;
+    showToast("Tebrikler! Bırakma süreci başladı.");
+    tab = "home"; show();
+  };
+
+  $("quitNoBtn").onclick = function() {
+    S.quitConfirmed = false;
+    homeDedeMsg = {
+      text: "Canın sağ olsun evladım. Olmadı diye dünyanın sonu değil. Kendine yeni bir tarih belirleyelim. Ama bu sefer neyin seni zorladığını da anlayalım.",
+      mood: "comfort"
+    };
+    save();
+    // Yeni tarih seçtir
+    box.innerHTML =
+      '<div style="text-align:center;margin-bottom:10px">' + getDedeAvatar("comfort") + '</div>' +
+      '<h3 style="margin-top:0">Yeni bir tarih belirleyelim</h3>' +
+      '<p class="mu">Canın sağ olsun. Olmadı diye dünyanın sonu değil.</p>' +
+      '<label for="newQuitDate">Yeni bırakma tarihi</label>' +
+      '<input id="newQuitDate" type="datetime-local">' +
+      '<div class="row" style="margin-top:12px">' +
+        '<button class="s" id="quitLaterSkip" style="flex:1">Sonra karar veririm</button>' +
+        '<button class="w" id="quitLaterSave" style="flex:1">Tarihi Kaydet</button>' +
+      '</div>';
+    var inp = $("newQuitDate");
+    if (inp) {
+      var minD = new Date();
+      minD.setMinutes(minD.getMinutes() - minD.getTimezoneOffset() + 60);
+      inp.min = minD.toISOString().slice(0,16);
+      inp.value = minD.toISOString().slice(0,16);
+    }
+    $("quitLaterSkip").onclick = function() {
+      // start'ı uzak bir geleceğe itme — kullanıcı ayarlardan seçer
+      // start'ı şimdi + 1 gün yap ki needsQuitConfirm tekrar tetiklenmesin hemen
+      S.start = Date.now() + DAY;
+      S.quitConfirmed = false;
+      save();
+      mb.classList.remove("on");
+      box.innerHTML = "";
+      _quitModalShown = false;
+      showToast("Hazırlık devam ediyor. Ayarlar'dan tarih seçebilirsin.");
+      tab = "home"; show();
+    };
+    $("quitLaterSave").onclick = function() {
+      var t = new Date(($("newQuitDate") && $("newQuitDate").value) || "").getTime();
+      if (!t || isNaN(t) || t <= Date.now()) {
+        showToast("Gelecek bir tarih seçmelisin.");
+        return;
+      }
+      S.start = t;
+      S.quitConfirmed = false;
+      save();
+      mb.classList.remove("on");
+      box.innerHTML = "";
+      _quitModalShown = false;
+      showToast("Yeni tarih kaydedildi. Geri sayım yeniden başladı.");
+      tab = "home"; homeDedeMsg = null; show();
+    };
+  };
+}
+setInterval(tick, 1000);
+
+/* ---------- HEALTH ---------- */
+function healthScreen() {
+  var h = stats().cur / 36e5;
+  var html = '<h2>Vücudundaki İyileşmeler</h2><p class="mu">Bunlar bilimsel ortalamalardır, kişiye göre değişebilir.</p>' +
+    MS.map(function(m, i){
+      var d = h >= m[0], bar = "";
+      if (!d && (i === 0 || h >= MS[i-1][0])) {
+        var pr = i ? MS[i-1][0] : 0;
+        bar = '<div class="bar"><i style="width:' + Math.max(2, (h - pr) / (m[0] - pr) * 100) + '%"></i></div>';
+      }
+      return '<div class="ms' + (d ? "" : " o") + '"><div>' + (d ? "✅" : "⏳") + '</div><div style="flex:1"><h3>' + m[1] + '</h3><span class="mu">' + m[2] + '</span>' + bar + '</div></div>';
+    }).join("") + weightUI() + standaloneStateLogUI();
+  $("app").innerHTML = html;
+  bindWeightEvents();
+  bindStateLogEvents();
+}
+
+function standaloneStateLogUI() {
+  var logs = S.stateLogs || [];
+  var logListHtml = logs.slice(-5).reverse().map(function(l){
+    return '<div class="c" style="padding:10px; margin-bottom:6px;"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px"><b style="font-size:0.9rem">' + esc(l.dateStr) + '</b><span class="mu">Ruh: ' + esc(l.mood) + ' | Stres: ' + l.stress + '/10 | İstek: ' + l.urge + '/10</span></div>' +
+      '<span class="mu">Sigara isterken yemek isteği: <b>' + esc(l.eatDesire) + '</b> | Gerçekten yedi mi: <b>' + esc(l.ateActually) + '</b></span>' +
+      (l.note ? '<p style="margin:4px 0 0; font-size:0.88rem">"' + esc(l.note) + '"</p>' : '') + '</div>';
+  }).join("");
+
+  return '<h2>Anlık Durum ve Yemek Davranışı Kaydı</h2>' +
+    '<div class="c"><p class="mu">İstediğin zaman, günde kaç kez istersen kaydet. Krizlerden tamamen ayrıdır.</p>' +
+      '<label for="stMood">Ruh Hâli</label>' +
+      '<select id="stMood"><option>Huzurlu</option><option>Normal</option><option>Gergin</option><option>Yorgun</option><option>Neşeli</option><option>Sıkkın</option></select>' +
+      '<div class="row"><div><label for="stStress">Stres Seviyesi (1-10)</label><input id="stStress" type="number" min="1" max="10" value="3"></div>' +
+      '<div><label for="stUrge">Sigara İsteği (1-10)</label><input id="stUrge" type="number" min="1" max="10" value="1"></div></div>' +
+      '<div class="row">' +
+        '<div><label for="stEatDesire">Sigara İstediğinde Yemek Yeme İsteğin de Oldu mu?</label><select id="stEatDesire"><option>Hayır</option><option>Evet</option></select></div>' +
+        '<div><label for="stAteActually">Sigara İsteğini Bastırmak İçin Gerçekten Yemek Yedin mi?</label><select id="stAteActually"><option>Hayır</option><option>Evet</option></select></div>' +
+      '</div>' +
+      '<label for="stNote">İsteğe Bağlı Not / Ne Yedin?</label><input id="stNote" type="text" placeholder="Örn: Çikolata yedim">' +
+      '<div style="height:10px"></div>' +
+      '<button class="w" id="saveStateLogBtn">Anlık Durumu Kaydet</button></div>' +
+    (logs.length ? '<h3>Son Durum Kayıtların</h3>' + logListHtml : '');
+}
+
+function bindStateLogEvents() {
+  var btn = $("saveStateLogBtn"); if (!btn) return;
+  btn.onclick = function() {
+    var now = new Date();
+    var entry = {
+      ts: now.getTime(),
+      dateStr: now.toLocaleDateString("tr-TR") + " " + now.toLocaleTimeString("tr-TR", {hour:'2-digit', minute:'2-digit'}),
+      mood: $("stMood").value,
+      stress: parseInt($("stStress").value, 10) || 1,
+      urge: parseInt($("stUrge").value, 10) || 1,
+      eatDesire: $("stEatDesire").value,
+      ateActually: $("stAteActually").value,
+      note: $("stNote").value.trim()
+    };
+    S.stateLogs.push(entry); save();
+    showToast("Anlık durum ve yemek davranışı kaydedildi!");
+    healthScreen();
+  };
+}
+
+function weightUI() {
+  if (!S.wOn) return '<h2 style="margin-top:20px">Kilo Takibi</h2><button class="s w" id="won">İsteğe Bağlı Kilo Takibini Aç</button>';
+  var W = S.weights, cur = W.length ? W[W.length-1].kg : S.w0, bmi = S.hgt ? cur / Math.pow(S.hgt/100, 2) : 0, ln = "";
+  if (W.length > 1) {
+    var mn = Math.min.apply(0, W.map(function(w){return w.kg;})) - 1, mx = Math.max.apply(0, W.map(function(w){return w.kg;})) + 1;
+    ln = '<svg viewBox="0 0 300 80" width="100%" style="margin-top:10px"><polyline fill="none" stroke="var(--tq)" stroke-width="3" points="' + W.map(function(w,i){ return (i/(W.length-1)*290+5)+","+(75-(w.kg-mn)/(mx-mn)*70); }).join(" ") + '"/></svg>';
+  }
+  return '<h2 style="margin-top:20px">Kilo Takibi</h2><div class="c"><b>' + f(cur, 1) + ' kg</b><span>Başlangıç ' + f(S.w0, 1) + ' kg · Fark ' + (cur - S.w0 >= 0 ? "+" : "") + f(cur - S.w0, 1) + ' kg' + (S.wg ? ' · Hedef ' + f(S.wg, 1) + ' kg' : '') + (bmi ? ' · VKİ ' + f(bmi, 1) : '') + '</span>' + ln + '</div>' +
+    '<div class="row" style="margin-top:8px"><input id="wk" type="number" step="0.1" inputmode="decimal" placeholder="Güncel kilo (kg)"><button id="wadd" style="flex:0 0 90px">Ekle</button></div>' +
+    W.slice(-4).reverse().map(function(w){ return '<div class="mu">' + new Date(w.ts).toLocaleDateString("tr-TR") + ' · ' + f(w.kg, 1) + ' kg</div>'; }).join("");
+}
+
+function bindWeightEvents() {
+  var a = $("won"), b = $("wadd");
+  if (a) a.onclick = function(){ S.wOn = 1; save(); healthScreen(); };
+  if (b) b.onclick = function(){
+    var v = parseFloat($("wk").value.replace(",", "."));
+    if (v > 20 && v < 400) { S.weights.push({ts: Date.now(), kg: v}); save(); showToast("Kilo eklendi."); healthScreen(); }
+  };
+}
+
+/* ---------- INSIGHTS ---------- */
+function insightsScreen() {
+  var c = S.crises || [], n = c.length, T = Date.now();
+  var c7 = c.filter(function(x){ return T - x.ts < 7*DAY; });
+  var cPrev7 = c.filter(function(x){ return T - x.ts >= 7*DAY && T - x.ts < 14*DAY; });
+  var o = [];
+
+  o.push('<h2>Benim Kriz Düzenim</h2>');
+  if (!n) o.push(dedeBox("Daha seni tanımıyorum evladım. Birkaç kriz atlatalım, sonra senin düzenini çözerim.", "thought"));
+  else if (n < 4) o.push(dedeBox("Şimdilik " + n + " kriz kaydın var. Sağlam bir analiz için en az 4 kriz lazım koçum.", "thought"));
+
+  o.push('<div class="c"><h3>Son 7 Gün / Önceki 7 Gün</h3>' +
+    '<div style="font-size:1.5rem; font-weight:800; color:var(--tq)">' + c7.length + ' / ' + cPrev7.length + '</div>' +
+    '<span class="mu">' + (c7.length < cPrev7.length ? 'Azalma var, güzel gidiyorsun!' : c7.length > cPrev7.length ? 'Artış var, dikkat et.' : 'Aynı seviyede.') + '</span></div>');
+
+  if (n >= 2) {
+    var hours = new Array(24).fill(0);
+    c.forEach(function(x){ hours[new Date(x.ts).getHours()]++; });
+    var maxH = Math.max.apply(0, hours), peak = hours.indexOf(maxH);
+    o.push('<div class="c"><h3>Saatlik Kriz Dağılımı</h3><div class="bars">' +
+      hours.map(function(v, i){ var ht = maxH ? (v/maxH*100) : 0; return '<div style="height:' + Math.max(2, ht) + '%" title="' + i + ':00 — ' + v + ' kriz"></div>'; }).join("") +
+      '</div><p class="mu" style="margin-top:22px">En sık: ' + peak + ':00 civarı (' + maxH + ' kriz)</p></div>');
+  }
+
+  if (n >= 2) {
+    var trigs = {};
+    c.forEach(function(x){ var t = triggerOf(x); trigs[t] = (trigs[t]||0)+1; });
+    var trigHtml = Object.keys(trigs).map(function(k){ return '<div class="mu">' + esc(k) + ': <b>' + trigs[k] + '</b></div>'; }).join("");
+    o.push('<div class="c"><h3>Tetikleyici Dağılımı</h3>' + trigHtml + '</div>');
+  }
+
+  if (c7.length && cPrev7.length) {
+    var s7 = c7.reduce(function(a,x){ return a + (x.before||0); }, 0) / c7.length;
+    var sp7 = cPrev7.reduce(function(a,x){ return a + (x.before||0); }, 0) / cPrev7.length;
+    o.push('<div class="c"><h3>Ortalama Kriz Şiddeti</h3><b>' + f(s7, 1) + ' / ' + f(sp7, 1) + '</b><span class="mu"> Son 7 gün / Önceki 7 gün</span></div>');
+  }
+
+  if (n) {
+    var succ = c.filter(function(x){ return !x.smoked; }).length;
+    o.push('<div class="c"><h3>Kriz Atlatma Oranı</h3><b>%' + f(succ/n*100, 0) + '</b><span class="mu"> (' + succ + '/' + n + ')</span></div>');
+  }
+
+  var stLogs = S.stateLogs || [];
+  if (stLogs.length) {
+    var eatDesireCount = stLogs.filter(function(l){ return l.eatDesire === "Evet"; }).length;
+    var ateActuallyCount = stLogs.filter(function(l){ return l.ateActually === "Evet"; }).length;
+    var onlyDesire = stLogs.filter(function(l){ return l.eatDesire === "Evet" && l.ateActually === "Hayır"; }).length;
+    var onlyAte = stLogs.filter(function(l){ return l.eatDesire === "Hayır" && l.ateActually === "Evet"; }).length;
+    o.push('<div class="c"><h3>Yemek Davranışı Analizi</h3>' +
+      '<span>Toplam <b>' + stLogs.length + '</b> anlık durum kaydı.<br>' +
+      'Sigara isteğinde yemek yeme isteği: <b>' + eatDesireCount + '</b> kez<br>' +
+      'Gerçekten yemek yeme: <b>' + ateActuallyCount + '</b> kez<br>' +
+      '<span class="mu">İstek olup yemeyenler: ' + onlyDesire + ' · İstek yokken yiyenler: ' + onlyAte + '</span></span></div>');
+  }
+
+  var pats = analyzePatterns();
+  if (pats.length) {
+    o.push('<h2>Tespit Edilen Örüntüler</h2>');
+    pats.forEach(function(p){
+      o.push('<div class="c"><span class="mu">' + (p.type === "hour" ? "Saat örüntüsü" : p.type === "day" ? "Gün örüntüsü" : "Tetikleyici örüntüsü") + '</span><div style="margin-top:4px">' + esc(p.msg) + '</div></div>');
+    });
+  }
+
+  var prog = detectProgress();
+  if (prog) {
+    o.push('<h2>İlerleme Özeti</h2><div class="c"><h3>Son 7 Gün vs Önceki 7 Gün</h3>' +
+      'Kriz sayısı: <b>' + prog.lastCount + '</b> (önceki: ' + prog.prevCount + ')<br>' +
+      'Değişim: <b>%' + prog.dropPct + '</b> (' + (prog.dropPct >= 0 ? 'azalma' : 'artış') + ')<br>' +
+      'Şiddet farkı: <b>' + f(prog.sevDelta, 1) + '</b> puan<br>' +
+      'Atlatma oranı değişimi: <b>%' + f(prog.succDelta, 0) + '</b></div>');
+  }
+
+  // Benim Tetikleyicilerim
+  o.push('<h2>Benim Tetikleyicilerim</h2>');
+  var allTrigs = {};
+  (S.crises || []).forEach(function(cr){
+    if (!cr.ctx) return;
+    Object.keys(cr.ctx).forEach(function(t){
+      if (!allTrigs[t]) allTrigs[t] = {count:0, urgeSum:0, success:0};
+      allTrigs[t].count++;
+      allTrigs[t].urgeSum += (cr.before || 0);
+      if (!cr.smoked) allTrigs[t].success++;
+    });
+  });
+  var trigKeys = Object.keys(allTrigs);
+  if (!trigKeys.length) {
+    o.push(dedeBox("Henüz tetikleyici kaydın yok evladım. Kriz atlattıkça burası dolacak.", "thought"));
+  } else {
+    trigKeys.sort(function(a,b){ return allTrigs[b].count - allTrigs[a].count; });
+    var hardest = trigKeys[0], hardestAvg = allTrigs[hardest].urgeSum / allTrigs[hardest].count;
+    trigKeys.forEach(function(t){
+      var info = allTrigs[t];
+      var avg = info.urgeSum / info.count;
+      var rate = Math.round(info.success / info.count * 100);
+      o.push('<div class="c"><h3>' + esc(t) + '</h3>' +
+        '<span>Kriz: <b>' + info.count + '</b> · Ort. şiddet: <b>' + f(avg,1) + '</b> · Atlatma: <b>%' + rate + '</b></span>' +
+        '<p class="mu" style="margin:6px 0 0">' + esc(tipForTrigger(t)) + '</p></div>');
+    });
+    o.push(dedeBox("En çok '" + hardest + "' ile boğuşuyorsun (ort. " + f(hardestAvg,1) + "). Bu tetikleyiciyi tanı, hazırlıklı ol gari.", "thought"));
+  }
+
+  // Kullanıcının tanımlı tetikleyicileri (henüz kriz yoksa bile)
+  var myList = getTriggers();
+  if (myList.length) {
+    o.push('<div class="c"><h3>Tanımlı Tetikleyicilerin</h3><span class="mu">' + myList.map(esc).join(", ") + '</span></div>');
+  }
+
+  // Sigara Deneyimlerim
+  o.push('<h2>Sigara Deneyimlerim</h2>');
+  var logs = S.expLogs || [];
+  if (!logs.length) {
+    o.push('<div class="c"><span class="mu">Henüz deneyim kaydı yok. Hazırlık döneminde "Sigara İçtim" kaydından sonra işaretleyebilirsin.</span></div>');
+  } else {
+    var counts = {};
+    var phys = {}, regret = 0, chain = 0, noRelief = 0, koku = 0;
+    logs.forEach(function(L){
+      (L.exps || []).forEach(function(id){
+        counts[id] = (counts[id]||0)+1;
+        if (id === "pisman") regret++;
+        if (id === "art_arda" || id === "saymadan") chain++;
+        if (id === "rahatlatti_mi") noRelief++;
+        if (id === "koku" || id === "nefes_koku") koku++;
+        if (["bogaz","oksuruk","ciger","nefes_dar","bas_agri","bas_don","mide","kalp","halsiz"].indexOf(id)>=0)
+          phys[id] = (phys[id]||0)+1;
+      });
+    });
+    var top = Object.keys(counts).sort(function(a,b){ return counts[b]-counts[a]; }).slice(0,5);
+    if (top.length) {
+      o.push('<div class="c"><h3>En sık işaretlenenler</h3>');
+      top.forEach(function(id){
+        var lab = id;
+        EXP_OPTS.forEach(function(o){ if (o.id===id) lab = o.label; });
+        o.push('<div class="mu">' + esc(lab) + ': <b>' + counts[id] + '</b></div>');
+      });
+      o.push('</div>');
+    }
+    o.push('<div class="c"><h3>Özet (' + logs.length + ' kayıt)</h3>' +
+      '<span>Kötü koku: <b>' + koku + '</b> · Pişmanlık: <b>' + regret + '</b><br>' +
+      'Art arda içme: <b>' + chain + '</b> · Rahatlatmadı: <b>' + noRelief + '</b></span></div>');
+    var physKeys = Object.keys(phys).sort(function(a,b){ return phys[b]-phys[a]; }).slice(0,4);
+    if (physKeys.length) {
+      o.push('<div class="c"><h3>Fiziksel rahatsızlıklar</h3>');
+      physKeys.forEach(function(id){
+        var lab = id;
+        EXP_OPTS.forEach(function(o){ if (o.id===id) lab = o.label; });
+        o.push('<div class="mu">' + esc(lab) + ': <b>' + phys[id] + '</b></div>');
+      });
+      o.push('<p class="mu" style="margin-top:6px">Bu belirtiler tıbbi değerlendirme gerektirebilir; teşhis değildir.</p></div>');
+    }
+    // Son 5 kayıt
+    o.push('<h3>Son kayıtlar</h3>');
+    logs.slice(-5).reverse().forEach(function(L){
+      var labs = (L.exps||[]).map(function(id){
+        for (var i=0;i<EXP_OPTS.length;i++) if (EXP_OPTS[i].id===id) return EXP_OPTS[i].label;
+        return id;
+      });
+      o.push('<div class="c" style="padding:10px"><b style="font-size:0.9rem">' + new Date(L.ts).toLocaleString("tr-TR") +
+        '</b><br><span class="mu">' + (L.none ? "Hiçbiri işaretlenmedi" : (labs.join(", ") || "—")) +
+        (L.score ? " · Puan: " + L.score + "/10" : "") + '</span></div>');
+    });
+    if (top.length >= 2) {
+      o.push(dedeBox("Ulan bak hele, kendi kayıtların konuşuyor. Bu meret sana " + top.length + " türlü boktan his bırakmış. Unutma gari.", "thought"));
+    }
+  }
+
+  if (S.badges.length) {
+    o.push('<h2>Rozetler</h2><div>' + S.badges.map(function(b){ return '<span class="bg" title="' + esc(b.desc) + '">🏅 ' + esc(b.name) + '</span>'; }).join("") + '</div>');
+  }
+
+  $("app").innerHTML = o.join("");
+}
+
+/* ---------- SETTINGS ---------- */
+function settingsScreen() {
+  var th = S.theme || "auto";
+  $("app").innerHTML = '<h2>Ayarlar</h2>' +
+    '<button class="w s" id="ed">Bilgilerimi Düzenle (Tarih, Miktar, Fiyat, Argo Seviyesi)</button>' +
+    '<label for="th">Tema</label>' +
+    '<select id="th"><option value="auto">Otomatik</option><option value="light">Açık</option><option value="dark">Koyu</option></select>' +
+    '<h2>Bırakma Tarihi</h2>' +
+    '<p class="mu" id="quitDateInfo"></p>' +
+    '<div class="row" style="margin-bottom:6px">' +
+      '<button class="s" id="setQuitToday" style="flex:1">Bugün Bırak</button>' +
+      '<button class="s" id="setQuitLater" style="flex:1">Tarih Değiştir</button>' +
+    '</div>' +
+    '<div id="setQuitWrap" style="display:none;margin-bottom:8px">' +
+      '<input id="setQuitDate" type="datetime-local">' +
+      '<button class="w" id="saveQuitDate" style="margin-top:6px">Tarihi Kaydet</button>' +
+    '</div>' +
+    '<h2>Tetikleyicilerim</h2>' +
+    '<p class="mu">Kriz ve Dede tavsiyelerinde kullanılır. Birden fazla seçebilirsin.</p>' +
+    '<div id="trigList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>' +
+    '<h2>Hedef Ekle</h2><div class="row"><input id="gv" type="number" inputmode="numeric" placeholder="Kendi hedefin (TL)"><button id="ga" style="flex:0 0 80px">Ekle</button></div>' +
+    '<h2>Yedekle / Geri Yükle</h2>' +
+    '<textarea id="ex" rows="4" placeholder="JSON yedeği"></textarea>' +
+    '<div class="row" style="margin-top:6px"><button class="s" id="cp">Kopyala</button><button class="s" id="dl">Dosya İndir</button></div>' +
+    '<div class="row" style="margin-top:6px"><button class="s" id="im">Metinden Yükle</button><button class="s" id="fu">Dosyadan Yükle</button></div>' +
+    '<input type="file" id="fileInput" accept=".json,application/json" style="display:none">' +
+    '<p class="mu" id="em"></p>' +
+    '<h2 style="color:var(--rd)">Tehlikeli Bölge</h2>' +
+    '<button class="w r" id="resetAll">🗑️ Tüm Verileri Sıfırla</button>' +
+    '<p class="mu">Bu işlem geri alınamaz. Tüm kayıtlar, rozetler ve ayarlar silinir.</p>';
+
+  $("th").value = th;
+  $("th").onchange = function(){ S.theme = this.value; applyTheme(); save(); };
+  $("ed").onclick = function(){ setup(true); };
+
+  // Bırakma tarihi bilgisi ve değiştirme
+  (function(){
+    var info = $("quitDateInfo");
+    if (info) {
+      if (isActiveQuit()) {
+        info.innerHTML = "Aktif bırakma · Başlangıç: <b>" + new Date(S.start).toLocaleString("tr-TR") + "</b>";
+      } else if (isCountdown()) {
+        var cd = formatCountdown(S.start - Date.now());
+        info.innerHTML = "Hazırlık modu · Bırakma: <b>" + new Date(S.start).toLocaleString("tr-TR") + "</b><br>Kalan: " + cd.text;
+      } else if (needsQuitConfirm()) {
+        info.innerHTML = "Onay bekleniyor · Planlanan: <b>" + new Date(S.start).toLocaleString("tr-TR") + "</b>";
+      } else {
+        info.innerHTML = "Hazırlık modu · Tarih seçilmedi veya ertelendi.";
+      }
+    }
+    var wrap = $("setQuitWrap");
+    $("setQuitToday").onclick = function(){
+      if (!confirm("Bırakma tarihini şimdi olarak ayarlamak istiyor musun? Sayaç bugünden başlar.")) return;
+      S.start = Date.now();
+      S.quitConfirmed = true;
+      S._wasPrep = false;
+      homeDedeMsg = null;
+      save();
+      showToast("Bugünden itibaren bırakma süreci başladı!");
+      tab = "home"; show();
+    };
+    $("setQuitLater").onclick = function(){
+      if (wrap) wrap.style.display = wrap.style.display === "none" ? "block" : "none";
+      var inp = $("setQuitDate");
+      if (inp) {
+        var minD = new Date();
+        minD.setMinutes(minD.getMinutes() - minD.getTimezoneOffset() + 30);
+        inp.min = minD.toISOString().slice(0,16);
+        var cur = new Date(Math.max(S.start || Date.now(), Date.now() + 3600000));
+        cur.setMinutes(cur.getMinutes() - cur.getTimezoneOffset());
+        inp.value = cur.toISOString().slice(0,16);
+      }
+    };
+    $("saveQuitDate").onclick = function(){
+      var t = new Date(($("setQuitDate") && $("setQuitDate").value) || "").getTime();
+      if (!t || isNaN(t) || t <= Date.now()) { showToast("Gelecek bir tarih seçmelisin."); return; }
+      S.start = t;
+      S.quitConfirmed = false;
+      S._wasPrep = true;
+      homeDedeMsg = null;
+      save();
+      showToast("Bırakma tarihi güncellendi. Hazırlık modu aktif.");
+      tab = "home"; show();
+    };
+  })();
+
+  // Tetikleyici listesi (sabit 20 seçenek)
+  function renderTrigList() {
+    var list = getTriggers();
+    var el = $("trigList");
+    if (!el) return;
+    el.innerHTML = DEFAULT_TRIGGERS.map(function(t){
+      var on = list.indexOf(t) >= 0;
+      return '<button type="button" class="p' + (on ? ' on' : '') + '" data-set-trig="' + esc(t) + '" style="flex:1 1 46%;min-width:140px;text-align:left;font-size:0.85rem">' + esc(t) + '</button>';
+    }).join("");
+    Array.prototype.forEach.call(el.querySelectorAll("[data-set-trig]"), function(btn){
+      btn.onclick = function(){
+        var t = btn.getAttribute("data-set-trig");
+        if (!S.triggers) S.triggers = [];
+        var i = S.triggers.indexOf(t);
+        if (i >= 0) S.triggers.splice(i, 1);
+        else S.triggers.push(t);
+        S.trig = S.triggers.join(", ");
+        save();
+        renderTrigList();
+        homeDedeMsg = null; // mesaj havuzu yenilensin
+      };
+    });
+  }
+  renderTrigList();
+  $("ga").onclick = function(){ var v = +$("gv").value; if (v > 0) { S.goals.push(v); save(); showToast("Hedef eklendi."); settingsScreen(); } };
+  $("ex").value = JSON.stringify(S);
+
+  $("cp").onclick = function(){
+    $("ex").select();
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText($("ex").value).then(function(){ showToast("Yedek kopyalandı!"); });
+      else { document.execCommand('copy'); showToast("Metin kopyalandı."); }
+    } catch(e) { showToast("Kopyalanamadı."); }
+  };
+
+  $("dl").onclick = function(){
+    try {
+      var blob = new Blob([JSON.stringify(S, null, 2)], {type:"application/json"});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a"); a.href = url; a.download = "osmandede-yedek-" + new Date().toISOString().slice(0,10) + ".json";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+      showToast("Yedek dosyası indiriliyor.");
+    } catch(e) { showToast("İndirme başarısız."); }
+  };
+
+  function importData(jsonStr) {
+    try {
+      var x = JSON.parse(jsonStr);
+      if (!x || (!x.start && !x.crises)) throw new Error("Geçersiz");
+      if (!confirm("Mevcut verileriniz yedekle değiştirilecek. Devam edilsin mi?")) return;
+      ["crises","slips","weights","goals","stateLogs","expLogs","badges","bannerResponses"].forEach(function(k){ x[k] = x[k] || []; });
+      x.triggers = x.triggers || []; x.dedeSeen = x.dedeSeen || {}; x.expLogs = x.expLogs || []; if (x.quitConfirmed === undefined) x.quitConfirmed = !!(x.setupDone && x.start && x.start <= Date.now());
+      x.dismissedBanners = x.dismissedBanners || {};
+            if (x.setupDone === undefined) x.setupDone = true;
+      S = x; save(); applyTheme(); showToast("Yedek yüklendi!"); tab = "home"; show();
+    } catch(e) { showToast("Geçersiz yedek!"); }
+  }
+
+  $("im").onclick = function(){ importData($("ex").value); };
+  $("fu").onclick = function(){ $("fileInput").click(); };
+  $("fileInput").onchange = function(e) {
+    var file = e.target.files[0]; if (!file) return;
+    var r = new FileReader();
+    r.onload = function(){ importData(r.result); };
+    r.readAsText(file); e.target.value = "";
+  };
+
+  // ---------- TÜM VERİLERİ SIFIRLA ----------
+  var resetBtn = $("resetAll");
+  if (resetBtn) {
+    resetBtn.onclick = function() {
+      // 1. Onay modalı göster (iOS confirm sorunlarını aşmak için uygulama içi modal)
+      var mb = $("modalBg");
+      var box = $("modalBox");
+      if (!mb || !box) {
+        // Fallback: native confirm
+        if (!confirm("Uygulamadaki bütün kişisel verilerin silinecek. Bu işlem geri alınamaz. Devam etmek istiyor musun?")) return;
+        if (!confirm("Son onay: TÜM veriler silinsin mi? Bu işlem geri alınamaz.")) return;
+        doFullReset();
+        return;
+      }
+      box.innerHTML =
+        '<h3 style="margin-top:0;color:var(--rd)">Tüm Verileri Sıfırla</h3>' +
+        '<p>Uygulamadaki bütün kişisel verilerin <b>kalıcı olarak</b> silinecek:</p>' +
+        '<ul style="margin:8px 0;padding-left:18px;font-size:0.92rem;color:var(--mu)">' +
+          '<li>Kriz ve sigara kayıtları</li>' +
+          '<li>Rozetler ve istatistikler</li>' +
+          '<li>Anlık durum / kilo kayıtları</li>' +
+          '<li>Ayarlar ve tercihler</li>' +
+        '</ul>' +
+        '<p style="font-weight:600">Bu işlem geri alınamaz.</p>' +
+        '<div class="row" style="margin-top:14px">' +
+          '<button class="s" id="resetCancelBtn" style="flex:1">Vazgeç</button>' +
+          '<button class="r" id="resetConfirmBtn" style="flex:1">Evet, Sil</button>' +
+        '</div>';
+      mb.classList.add("on");
+
+      $("resetCancelBtn").onclick = function() {
+        mb.classList.remove("on");
+        box.innerHTML = "";
+      };
+      $("resetConfirmBtn").onclick = function() {
+        // İkinci onay
+        box.innerHTML =
+          '<h3 style="margin-top:0;color:var(--rd)">Son Onay</h3>' +
+          '<p>Gerçekten <b>tüm verileri</b> silmek istiyor musun?</p>' +
+          '<p class="mu">Sayfa yenilenecek ve ilk kurulum ekranı açılacak.</p>' +
+          '<div class="row" style="margin-top:14px">' +
+            '<button class="s" id="resetCancel2" style="flex:1">Vazgeç</button>' +
+            '<button class="r" id="resetConfirm2" style="flex:1">Evet, Tümünü Sil</button>' +
+          '</div>';
+        $("resetCancel2").onclick = function() {
+          mb.classList.remove("on");
+          box.innerHTML = "";
+        };
+        $("resetConfirm2").onclick = function() {
+          mb.classList.remove("on");
+          box.innerHTML = "";
+          doFullReset();
+        };
+      };
+    };
+  }
+
+  function doFullReset() {
+    try {
+      // Timer'ları durdur
+      try { if (typeof CT !== "undefined" && CT) { clearInterval(CT); CT = null; } } catch(e){}
+      try { if (typeof memTimer !== "undefined" && memTimer) { clearTimeout(memTimer); memTimer = null; } } catch(e){}
+      try { if (typeof refTimer !== "undefined" && refTimer) { clearTimeout(refTimer); refTimer = null; } } catch(e){}
+
+      // Overlay kapat
+      try {
+        if ($("ov")) { $("ov").classList.remove("on"); $("ovc").innerHTML = ""; }
+        if ($("modalBg")) { $("modalBg").classList.remove("on"); $("modalBox").innerHTML = ""; }
+      } catch(e){}
+
+      try { CR = null; } catch(e){}
+      homeDedeMsg = null;
+      tab = "home";
+
+      // localStorage temizle — yalnızca OSMAN DEDE anahtarları
+      var keysToRemove = [K, K3, "osmandede_v1", "osmandede_v3_state", "osmandede"];
+      for (var i = 0; i < keysToRemove.length; i++) {
+        try { localStorage.removeItem(keysToRemove[i]); } catch(e){}
+      }
+      // Ek güvenlik: osmandede ile başlayan tüm anahtarları sil
+      try {
+        var allKeys = [];
+        for (var j = 0; j < localStorage.length; j++) {
+          var key = localStorage.key(j);
+          if (key && key.toLowerCase().indexOf("osmandede") === 0) allKeys.push(key);
+        }
+        for (var k = 0; k < allKeys.length; k++) localStorage.removeItem(allKeys[k]);
+      } catch(e){}
+
+      // Bellek state
+      initDefaultState();
+      S.setupDone = false;
+
+      showToast("Tüm veriler silindi. Yenileniyor...");
+      setTimeout(function() {
+        try {
+          location.reload();
+        } catch(e) {
+          // reload başarısız olursa manuel setup
+          show();
+        }
+      }, 350);
+    } catch (err) {
+      console.error("Sıfırlama hatası:", err);
+      alert("Sıfırlama sırasında hata: " + (err.message || err) + "\n\nSayfayı yenileyip tekrar deneyin.");
+    }
+  }
+}
+
+
+function applyTheme() {
+  var r = document.documentElement;
+  if (S && S.theme && S.theme !== "auto") r.setAttribute("data-theme", S.theme);
+  else r.removeAttribute("data-theme");
+}
+
+/* ---------- SETUP ---------- */
+function setup(edit) {
+  var d = new Date(edit && S.start ? S.start : Date.now());
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  var v = S || {perDay:20, perPack:20, price:100, years:"", why:"", trig:"", w0:"", hgt:"", wg:"", prof:1};
+
+  function I(id, l, val, type) {
+    return '<label for="' + id + '">' + l + '</label><input id="' + id + '" type="' + (type || "number") + '" value="' + esc(val) + '">';
+  }
+
+  $("app").innerHTML = (edit ? "" : dedeBox("Ulan evladım, ben bu merete 50 yılımı verdim. Sen bari verme. Birkaç şey soracağım, doğru cevapla.", "thought")) +
+    '<h2>' + (edit ? "Bilgilerini Düzenle" : "İlk Kurulum") + '</h2>' +
+    '<label>Sigarayı ne zaman bırakmak istiyorsun?</label>' +
+    '<div class="row" style="margin-bottom:8px">' +
+      '<button class="p on" id="quitToday" style="flex:1">Bugün bırakmak istiyorum</button>' +
+      '<button class="p" id="quitLater" style="flex:1">İleri bir tarihte</button>' +
+    '</div>' +
+    '<div id="quitDateWrap" style="display:none">' +
+      '<label for="q">Bırakma Tarihi ve Saati</label>' +
+      '<input id="q" type="datetime-local" value="' + d.toISOString().slice(0,16) + '">' +
+      '<p class="mu">Geçmiş bir tarih seçilemez. O güne kadar hazırlık modunda olacaksın.</p>' +
+    '</div>' +
+    '<input id="qHidden" type="hidden" value="' + d.toISOString().slice(0,16) + '">' +
+    '<div class="row"><div>' + I("pd", "Günde Kaç Sigara?", v.perDay) + '</div><div>' + I("pp", "Pakette Kaç Sigara?", v.perPack) + '</div></div>' +
+    '<div class="row"><div>' + I("pr", "Paket Fiyatı (TL)", v.price) + '</div><div>' + I("yr", "Kaç Yıldır İçiyordun?", v.years, "text") + '</div></div>' +
+    I("rs", "Bırakma Nedenin", v.why, "text") +
+    '<label>Tetikleyicilerin (birden fazla seçebilirsin)</label>' +
+    '<div id="setupTrigGrid" style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px">' +
+      DEFAULT_TRIGGERS.map(function(t){
+        var on = (v.triggers || []).indexOf(t) >= 0 || (v.trig && String(v.trig).indexOf(t) >= 0);
+        return '<button type="button" class="p' + (on ? ' on' : '') + '" data-setup-trig="' + esc(t) + '" style="flex:1 1 46%;min-width:140px;text-align:left;font-size:0.85rem">' + esc(t) + '</button>';
+      }).join("") +
+    '</div>' +
+    '<div class="row"><div>' + I("w0", "Başlangıç Kilo (kg)", v.w0) + '</div><div>' + I("hg", "Boy (cm)", v.hgt) + '</div><div>' + I("wg", "Hedef Kilo", v.wg) + '</div></div>' +
+    '<label for="pf">Osman Dede Argo Seviyesi</label><select id="pf"><option value="0">Temiz</option><option value="1">Hafif (Meret, Zıkkım)</option><option value="2">Dobra & Sert</option></select>' +
+    '<div style="height:14px"></div><button class="w" id="ok">' + (edit ? "Kaydet" : "Başla") + '</button>';
+
+  $("pf").value = v.prof || 1;
+  Array.prototype.forEach.call(document.querySelectorAll("[data-setup-trig]"), function(b){
+    b.onclick = function(){ b.classList.toggle("on"); };
+  });
+  var quitMode = "today"; // today | later
+  var quitTodayBtn = $("quitToday");
+  var quitLaterBtn = $("quitLater");
+  var quitDateWrap = $("quitDateWrap");
+  if (quitTodayBtn) quitTodayBtn.onclick = function(){
+    quitMode = "today";
+    quitTodayBtn.classList.add("on");
+    if (quitLaterBtn) quitLaterBtn.classList.remove("on");
+    if (quitDateWrap) quitDateWrap.style.display = "none";
+  };
+  if (quitLaterBtn) quitLaterBtn.onclick = function(){
+    quitMode = "later";
+    quitLaterBtn.classList.add("on");
+    if (quitTodayBtn) quitTodayBtn.classList.remove("on");
+    if (quitDateWrap) quitDateWrap.style.display = "block";
+    var q = $("q");
+    if (q) {
+      var minD = new Date();
+      minD.setMinutes(minD.getMinutes() - minD.getTimezoneOffset() + 60);
+      q.min = minD.toISOString().slice(0,16);
+    }
+  };
+  // edit mode: if existing start is future, show later selected
+  if (edit && S.start && S.start > Date.now()) {
+    if (quitLaterBtn) quitLaterBtn.onclick();
+    var qEl = $("q");
+    if (qEl) {
+      var ed = new Date(S.start);
+      ed.setMinutes(ed.getMinutes() - ed.getTimezoneOffset());
+      qEl.value = ed.toISOString().slice(0,16);
+    }
+  }
+
+  $("ok").onclick = function() {
+    var t;
+    if (quitMode === "later") {
+      t = new Date(($("q") && $("q").value) || "").getTime();
+      if (!t || isNaN(t)) { showToast("Lütfen geçerli bir tarih seç."); return; }
+      if (t <= Date.now()) { showToast("İleri tarih bugünden sonra olmalı."); return; }
+    } else {
+      t = Date.now();
+    }
+    var N = function(i, dflt){ var x = parseFloat($(i).value.replace(",", ".")); return x > 0 ? x : dflt; };
+    S.start = t;
+    S.quitConfirmed = (quitMode === "today"); // bugün = aktif, ileri = onay bekler
+    S.perDay = N("pd", 20); S.perPack = N("pp", 20); S.price = N("pr", 100);
+    S.years = $("yr").value; S.why = $("rs").value;
+    S.triggers = [];
+    Array.prototype.forEach.call(document.querySelectorAll("[data-setup-trig].on"), function(b){
+      var t = b.getAttribute("data-setup-trig");
+      if (t && S.triggers.indexOf(t) < 0) S.triggers.push(t);
+    });
+    S.trig = S.triggers.join(", ");
+    S.w0 = N("w0", 0); S.hgt = N("hg", 0); S.wg = N("wg", 0);
+    S.prof = +$("pf").value;
+    if (S.w0) S.wOn = 1;
+    S.setupDone = true;
+    S._wasPrep = !S.quitConfirmed;
+    save();
+    tab = "home"; homeDedeMsg = null; show();
+    showToast(S.quitConfirmed ? "Bilgiler kaydedildi. Haydi hayırlısı!" : "Hazırlık modu başladı. O güne kadar beraberiz!");
+  };
+}
+
+/* ================================================================
+   KRİZ MODU
+   ================================================================ */
+var CR = null, CT = null, memTimer = null, refTimer = null, refStartTime = 0;
+var ACT = ["Nefes","Matematik","Mantık","Kelime","Hafıza","Refleks","Hareket","Bilgi"];
+var LOG = [
+  ["2, 4, 8, 16 ... sıradaki sayı?", "32"],
+  ["Bir düzinenin yarısı kaç?", "6"],
+  ["Pazartesiden 10 gün sonra hangi gündeyiz? (Perşembe / Cuma...)", "persembe"],
+  ["3 kedi 3 fareyi 3 dakikada yakalıyorsa, 100 kedi 100 fareyi kaç dakikada yakalar?", "3"],
+  ["Elimde 5 elma var, 2 tanesini verdim, 3 tane aldım. Kaç elmam var?", "6"]
+];
+var WRD_LIST = ["sağlık","nefes","koşmak","para","dede","yürümek","su","hayat","irade","huzur","özgürlük"];
+var MOV = [
+  "Ayağa kalk, omuzlarını 10 kez geriye doğru çevir.",
+  "Olduğun yerde 15 kez derin nefes alarak squat yap.",
+  "Boynunu yavaşça sağa sola çevir, kollarını göğe uzat.",
+  "Hemen dışarı çık ve tempolu 3 dakika yürü gel."
+];
+var FACT = [
+  "Ahtapotun üç kalbi vardır evladım.",
+  "İnsan kalbi günde yaklaşık 100 bin kez atar.",
+  "Bal asla bozulmaz; yüzyıllık bal yenebilir.",
+  "Sigara isteği dalgası genelde 3-5 dakikada zirveyi geçer ve söner."
+];
+
+function norm(s) {
+  return String(s || "").toLocaleLowerCase("tr-TR")
+    .replace(/ş/g,"s").replace(/ğ/g,"g").replace(/ı/g,"i")
+    .replace(/ç/g,"c").replace(/ö/g,"o").replace(/ü/g,"u")
+    .replace(/î/g,"i").replace(/â/g,"a").replace(/û/g,"u").trim();
+}
+
+function openCrisis() {
+  if (CT) { clearInterval(CT); CT = null; }
+  if (memTimer) { clearTimeout(memTimer); memTimer = null; }
+  if (refTimer) { clearTimeout(refTimer); refTimer = null; }
+  CR = {
+    step: 0, before: 5, ctx: {},
+    acts: [], order: ACT.slice().sort(function(){ return Math.random() - .5; }),
+    i: 0, t0: 0, left: 300, smoked: false, after: null,
+    refBest: null, refRounds: []
+  };
+  $("ov").classList.add("on");
+  renderCrisis();
+}
+
+function closeCrisis() {
+  $("ov").classList.remove("on");
+  if (CT) { clearInterval(CT); CT = null; }
+  if (memTimer) { clearTimeout(memTimer); memTimer = null; }
+  if (refTimer) { clearTimeout(refTimer); refTimer = null; }
+  CR = null;
+  show();
+}
+
+function renderCrisis() {
+  var el = $("ovc");
+  if (!CR) return;
+
+  if (CR.step === 0) {
+    var userTrigs = getTriggers(); if (!userTrigs.length) userTrigs = DEFAULT_TRIGGERS.slice();
+    var ctxKeys = Object.keys(CR.ctx || {});
+    var dOpen = dedeCrisisOpen(CR.before, ctxKeys);
+    el.innerHTML = dedeBox(dOpen.msg, dOpen.mood) +
+      '<h3>İsteğin Şiddeti (1-10)</h3><div style="display:flex; flex-wrap:wrap; gap:4px">' +
+      [1,2,3,4,5,6,7,8,9,10].map(function(n){ return '<button class="p' + (CR.before === n ? " on" : "") + '" data-n="' + n + '" style="flex:1">' + n + '</button>'; }).join("") +
+      '</div><h3 style="margin-top:14px">Tetikleyici (birden fazla seçebilirsin)</h3><div style="display:flex; flex-wrap:wrap; gap:6px">' +
+      userTrigs.map(function(t){ return '<button class="p' + (CR.ctx[t] ? " on" : "") + '" data-c="' + esc(t) + '">' + esc(t) + '</button>'; }).join("") +
+      '</div>' +
+      
+      '<div style="height:14px"></div>' +
+      '<button class="w" id="startCrisisBtn">Krizi Yenmeye Başla (5 Dk)</button>' +
+      '<button class="w s" style="margin-top:8px" id="cancelCrisisBtn">Vazgeç</button>';
+
+    Array.prototype.forEach.call(el.querySelectorAll("[data-n]"), function(b){
+      b.onclick = function(){ CR.before = +b.dataset.n; renderCrisis(); };
+    });
+    Array.prototype.forEach.call(el.querySelectorAll("[data-c]"), function(b){
+      b.onclick = function(){
+        var k = b.getAttribute("data-c");
+        if (CR.ctx[k]) delete CR.ctx[k]; else CR.ctx[k] = true;
+        renderCrisis();
+      };
+    });
+    $("cancelCrisisBtn").onclick = closeCrisis;
+    $("startCrisisBtn").onclick = function(){
+      CR.step = 1; CR.t0 = Date.now(); CR.left = 300;
+      renderCrisis();
+      if (CT) clearInterval(CT);
+      CT = setInterval(function(){
+        CR.left = Math.max(0, 300 - Math.floor((Date.now() - CR.t0) / 1000));
+        var t = $("crtTimer");
+        if (t) t.textContent = Math.floor(CR.left/60) + ":" + ("0" + CR.left%60).slice(-2);
+        if (CR.left <= 0) { clearInterval(CT); CT = null; CR.step = 2; renderCrisis(); }
+      }, 1000);
+    };
+  }
+  else if (CR.step === 1) {
+    if (memTimer) { clearTimeout(memTimer); memTimer = null; }
+    if (refTimer) { clearTimeout(refTimer); refTimer = null; }
+
+    var a = CR.order[CR.i % ACT.length], h = "", ans = null;
+    if (CR.acts.indexOf(a) < 0) CR.acts.push(a);
+
+    if (a === "Nefes") h = '<div class="ci-circle">Al · Tut · Ver</div><p style="text-align:center">4 saniye al, 4 saniye tut, 6 saniye yavaşça ver.</p>';
+    else if (a === "Matematik") {
+      var x = 7 + Math.floor(Math.random()*13), y = 3 + Math.floor(Math.random()*8), z = Math.floor(Math.random()*30);
+      h = '<h3>' + x + ' × ' + y + ' + ' + z + ' = ?</h3><input id="gameAns" type="number" inputmode="numeric">';
+      ans = String(x * y + z);
+    }
+    else if (a === "Mantık") {
+      var q = LOG[Math.floor(Math.random()*LOG.length)];
+      h = '<h3>' + q[0] + '</h3><input id="gameAns" type="text">'; ans = q[1];
+    }
+    else if (a === "Kelime") {
+      var w = WRD_LIST[Math.floor(Math.random()*WRD_LIST.length)];
+      var sc = w.split("").sort(function(){ return Math.random() - .5; }).join("");
+      h = '<h3>Harfleri Düzelt:</h3><div class="gamebig">' + sc.toLocaleUpperCase("tr-TR") + '</div><input id="gameAns" type="text" autocapitalize="off">';
+      ans = w;
+    }
+    else if (a === "Hafıza") {
+      if (!CR.memLevel) CR.memLevel = 1;
+      if (!CR.memBest) CR.memBest = 1;
+      var levels = [
+        {n:3, t:1000}, {n:4, t:1500}, {n:5, t:2000}, {n:6, t:2500},
+        {n:7, t:3000}, {n:8, t:3000}, {n:9, t:3000}, {n:10, t:3000}
+      ];
+      var lv = Math.min(CR.memLevel, 8) - 1;
+      var conf = levels[lv];
+      var num = "";
+      for (var i=0; i<conf.n; i++) num += Math.floor(Math.random()*10);
+      var disp = num.split("").join(" · ");
+      h = '<p>Seviye ' + CR.memLevel + ' · ' + conf.n + ' rakam · ' + (conf.t/1000) + ' sn</p>' +
+          '<p class="mu">Rekor: Seviye ' + CR.memBest + '</p>' +
+          '<div class="gamebig" id="memSeqBox">' + disp + '</div>' +
+          '<input id="gameAns" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Sayıyı yaz" style="display:none">';
+      ans = num;
+      memTimer = setTimeout(function(){
+        var b = $("memSeqBox");
+        if (b && CR && CR.step === 1) {
+          b.textContent = "•••";
+          var inp = $("gameAns");
+          if (inp) { inp.style.display = "block"; inp.focus(); }
+        }
+      }, conf.t);
+      // Override check for level up/down
+      window._memCheckOverride = function(ok) {
+        if (ok) {
+          CR.memLevel = Math.min(8, CR.memLevel + 1);
+          if (CR.memLevel > CR.memBest) CR.memBest = CR.memLevel;
+          showToast("Doğru! Seviye " + CR.memLevel);
+        } else {
+          CR.memLevel = Math.max(1, CR.memLevel - 1);
+          showToast("Yanlış. Seviye " + CR.memLevel);
+        }
+      };
+    }
+    else if (a === "Refleks") {
+      h = '<p>Butona hazır ol. 2-5 saniye içinde yeşile dönecek. En hızlı şekilde dokun!</p>' +
+        '<div class="gamebox"><div id="refStatus" style="font-weight:700">Bekleniyor...</div>' +
+        '<button id="refBtn" disabled class="w" style="margin-top:12px; background:var(--mu); color:#fff">BEKLE</button>' +
+        '<div id="refRes" class="mutednote"></div></div>';
+    }
+    else if (a === "Hareket") h = '<h3>' + MOV[Math.floor(Math.random()*MOV.length)] + '</h3><p class="mu">Bir bardak su da iç evladım, iyi gelir.</p>';
+    else h = '<h3>' + FACT[Math.floor(Math.random()*FACT.length)] + '</h3>';
+
+    el.innerHTML = '<div class="tm" id="crtTimer">' + Math.floor(CR.left/60) + ':' + ("0"+CR.left%60).slice(-2) + '</div>' +
+      '<div class="mu" style="text-align:center">Aktivite: ' + a + '</div>' +
+      '<div class="c">' + h + '<p id="gameFeedback" class="mu" style="margin-top:8px"></p></div>' +
+      (ans ? '<button class="w" id="checkAnsBtn">Cevabı Kontrol Et</button><div style="height:8px"></div>' : "") +
+      '<button class="w s" id="nextActBtn">Sonraki Etkinlik</button>' +
+      '<button class="w s" style="margin-top:8px" id="finishCrisisNow">Kriz Geçti, Bitir</button>';
+
+    if (ans) {
+      $("checkAnsBtn").onclick = function(){
+        var userV = $("gameAns").value;
+        var ok = (norm(userV) === norm(ans));
+        $("gameFeedback").textContent = (ok ? dedeGame(true, CR.memLevel) : dedeGame(false) + " Doğru: " + ans);
+        if (typeof window._memCheckOverride === "function") {
+          window._memCheckOverride(ok);
+          window._memCheckOverride = null;
+        }
+      };
+    }
+
+    if (a === "Refleks") {
+      var delay = 2000 + Math.floor(Math.random()*3000), ready = false, rb = $("refBtn");
+      refTimer = setTimeout(function(){
+        if (rb && CR && CR.step === 1) {
+          ready = true; refStartTime = Date.now();
+          $("refStatus").textContent = "ŞİMDİ BAS!";
+          rb.disabled = false; rb.style.background = "var(--tq)"; rb.style.color = "#06201F"; rb.textContent = "ŞİMDİ!";
+        }
+      }, delay);
+
+      rb.onclick = function() {
+        if (!ready) { $("refStatus").textContent = "Çok erken bastın koçum!"; rb.disabled = true; if (refTimer) clearTimeout(refTimer); return; }
+        var ms = Date.now() - refStartTime;
+        CR.refRounds.push(ms);
+        if (CR.refBest === null || ms < CR.refBest) CR.refBest = ms;
+        $("refStatus").textContent = "Tepki: " + ms + " ms";
+        $("refRes").textContent = "En iyi: " + CR.refBest + " ms · Ortalama: " + Math.round(CR.refRounds.reduce(function(a,b){return a+b;},0)/CR.refRounds.length) + " ms";
+        ready = false; rb.disabled = true; rb.textContent = "BEKLE"; rb.style.background = "var(--mu)";
+        setTimeout(function(){
+          if (CR && CR.step === 1) {
+            var d2 = 2000 + Math.floor(Math.random()*3000);
+            refTimer = setTimeout(function(){
+              var rb2 = $("refBtn");
+              if (rb2 && CR && CR.step === 1) {
+                ready = true; refStartTime = Date.now();
+                $("refStatus").textContent = "ŞİMDİ BAS!";
+                rb2.disabled = false; rb2.style.background = "var(--tq)"; rb2.style.color = "#06201F"; rb2.textContent = "ŞİMDİ!";
+              }
+            }, d2);
+          }
+        }, 1200);
+      };
+    }
+
+    $("nextActBtn").onclick = function(){ CR.i++; renderCrisis(); };
+    $("finishCrisisNow").onclick = function(){
+      if (CT) { clearInterval(CT); CT = null; }
+      if (memTimer) { clearTimeout(memTimer); memTimer = null; }
+      if (refTimer) { clearTimeout(refTimer); refTimer = null; }
+      CR.step = 2; renderCrisis();
+    };
+  }
+  else {
+    var af = CR.after != null ? CR.after : Math.max(1, CR.before - 3);
+    el.innerHTML = (function(){
+      var endLines = [
+        "Gördün mü? Beş dakika dayandın, dünya başımıza yıkılmadı.",
+        "İstek dalgası geçti. Sigara bir ihtiyaç değilmiş, gördün mü?",
+        "Helal olsun. O meret kapıyı çaldı, sen açmadın."
+      ];
+      return dedeBox(endLines[Math.floor(Math.random()*endLines.length)] + " " + pickAllen(), "proud");
+    })() +
+      '<h3>İsteğin Şimdi Kaç? (1-10)</h3><div style="display:flex; flex-wrap:wrap; gap:4px">' +
+      [1,2,3,4,5,6,7,8,9,10].map(function(n){ return '<button class="p' + (af === n ? " on" : "") + '" data-af="' + n + '" style="flex:1">' + n + '</button>'; }).join("") +
+      '</div>' +
+      '<label style="margin-top:14px"><input type="checkbox" id="chkSmoked" style="width:auto"' + (CR.smoked ? " checked" : "") + '> Sigara İçtim</label>' +
+      '<div style="height:14px"></div>' +
+      '<button class="w" id="saveCrisisBtn">Krizi Kaydet ve Bitir</button>';
+
+    Array.prototype.forEach.call(el.querySelectorAll("[data-af]"), function(b){
+      b.onclick = function(){ CR.after = +b.dataset.af; CR.smoked = $("chkSmoked").checked; renderCrisis(); };
+    });
+
+    $("saveCrisisBtn").onclick = function() {
+      var sm = $("chkSmoked").checked;
+      var dur = Math.min(600, Math.floor((Date.now() - CR.t0) / 1000) || 30);
+      var entry = {
+        ts: CR.t0 || Date.now(), before: CR.before,
+        after: CR.after != null ? CR.after : 2,
+        dur: dur, acts: CR.acts.slice(), ctx: CR.ctx,
+        smoked: sm, wd: new Date(CR.t0 || Date.now()).getDay()
+      };
+      S.crises.push(entry);
+      if (sm) S.slips.push({ts: Date.now(), n: 1});
+      save();
+      closeCrisis();
+      showToast("Kriz kaydı saklandı!");
+      tab = "home"; show();
+    };
+  }
+}
+
+$("sos").onclick = openCrisis;
+
+
+/* ---------- Startup ---------- */
+applyTheme();
+show();
+
+})();
+</script>
+</body>
+</html>
